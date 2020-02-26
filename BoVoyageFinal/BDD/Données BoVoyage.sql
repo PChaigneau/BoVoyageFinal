@@ -170,6 +170,33 @@ values (4, 'Acceptée')
 
 -- delete from EtatDossier where EtatDossier.Id = 1
 
+
+-- Afficher toutes les caractéristiques de la table Photo
+sp_help 'Photo'
+
+insert Photo(NomFichier,
+			 IdDestination)
+values ('C:\Users\Adminl\Desktop\BoVoyage\BoVoyageFinal\BoVoyageFinal\wwwroot\pictures\Guadeloupe_Photo', 1)
+
+insert Photo(NomFichier,
+			 IdDestination)
+values ('C:\Users\Adminl\Desktop\BoVoyage\BoVoyageFinal\BoVoyageFinal\wwwroot\pictures\Saint-Barthélémy_Photo', 2)
+
+insert Photo(NomFichier,
+			 IdDestination)
+values ('C:\Users\Adminl\Desktop\BoVoyage\BoVoyageFinal\BoVoyageFinal\wwwroot\pictures\Birmanie_Photo', 3)
+
+insert Photo(NomFichier,
+			 IdDestination)
+values ('C:\Users\Adminl\Desktop\BoVoyage\BoVoyageFinal\BoVoyageFinal\wwwroot\pictures\Canada_Photo', 4)
+
+insert Photo(NomFichier,
+			 IdDestination)
+values ('C:\Users\Adminl\Desktop\BoVoyage\BoVoyageFinal\BoVoyageFinal\wwwroot\pictures\Bretagne_Photo', 5)
+
+select Photo.Id from Photo
+
+-- Backup and Restore DataBase
 backup database BoVoyage to disk = N'C:\Users\Adminl\Desktop\BoVoyage\BDD\BoVoyage.bak' with format
 
 restore database BoVoyage from disk = N'C:\Users\Adminl\Desktop\BoVoyage\BDD\BoVoyage.bak'
