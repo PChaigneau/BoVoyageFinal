@@ -18,16 +18,4 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Areas\BackOffice\Controllers\" />
-    <Folder Include="Areas\BackOffice\Data\" />
-    <Folder Include="Areas\BackOffice\Models\" />
-    <Folder Include="Areas\BackOffice\Views\" />
-    <Folder Include="Areas\SiteWeb\Controllers\" />
-    <Folder Include="Areas\SiteWeb\Data\" />
-    <Folder Include="Areas\SiteWeb\Models\" />
-    <Folder Include="Areas\SiteWeb\Views\" />
-  </ItemGroup>
-
 </Project>

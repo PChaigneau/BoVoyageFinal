@@ -12,6 +12,7 @@ using BoVoyageFinal.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using BoVoyageFinal.Models;
 
 namespace BoVoyageFinal
 {
@@ -29,7 +30,10 @@ namespace BoVoyageFinal
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("BoVoyageConnect")));
+            services.AddDbContext<BoVoyageContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("BoVoyageConnect")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
@@ -60,6 +64,9 @@ namespace BoVoyageFinal
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "areaRoute",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
