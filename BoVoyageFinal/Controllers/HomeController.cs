@@ -20,7 +20,7 @@ namespace BoVoyageFinal.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View();//Test
         }
 
         public IActionResult Privacy()
