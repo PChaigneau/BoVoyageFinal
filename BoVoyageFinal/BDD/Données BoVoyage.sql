@@ -176,24 +176,26 @@ sp_help 'Photo'
 
 insert Photo(NomFichier,
 			 IdDestination)
-values ('C:\Users\Adminl\Desktop\BoVoyage\BoVoyageFinal\BoVoyageFinal\wwwroot\pictures\Guadeloupe_Photo', 1)
+values ('Guadeloupe_Photo.jpg', 1)
 
 insert Photo(NomFichier,
 			 IdDestination)
-values ('C:\Users\Adminl\Desktop\BoVoyage\BoVoyageFinal\BoVoyageFinal\wwwroot\pictures\Saint-Barthélémy_Photo', 2)
+values ('Saint_Barthelemy_Photo.jpg', 2)
 
 insert Photo(NomFichier,
 			 IdDestination)
-values ('C:\Users\Adminl\Desktop\BoVoyage\BoVoyageFinal\BoVoyageFinal\wwwroot\pictures\Birmanie_Photo', 3)
+values ('Birmanie_Photo.jpg', 3)
 
 insert Photo(NomFichier,
 			 IdDestination)
-values ('C:\Users\Adminl\Desktop\BoVoyage\BoVoyageFinal\BoVoyageFinal\wwwroot\pictures\Canada_Photo', 4)
+values ('Canada_Photo.jpg', 4)
 
 insert Photo(NomFichier,
 			 IdDestination)
-values ('C:\Users\Adminl\Desktop\BoVoyage\BoVoyageFinal\BoVoyageFinal\wwwroot\pictures\Bretagne_Photo', 5)
+values ('Bretagne_Photo.jpg', 5)
 
+-- drop table Photo
+-- delete from Photo where Photo.Id = 11
 select Photo.Id from Photo
 
 -- Backup and Restore DataBase
