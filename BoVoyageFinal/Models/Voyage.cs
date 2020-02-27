@@ -38,6 +38,7 @@ namespace BoVoyageFinal.Models
 
         [Required]
         [Display(Name = "Réduction")]
+        [DisplayFormat(DataFormatString = "{0:P0}")]
         public decimal Reduction { get; set; }
 
         [Display(Name = "Descriptif")]

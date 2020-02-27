@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BoVoyageFinal.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BoVoyageFinal.Controllers
 {
@@ -22,8 +23,11 @@ namespace BoVoyageFinal.Controllers
 
         public IActionResult Index()
         {
-
-            return View();
+            HomeVM vm = new HomeVM();
+            vm.Top5Prix = _context.Voyage.Include(v => v.IdDestinationNavigation).ThenInclude(d => d.Photo).OrderBy(v => v.PrixHt).Take(5).ToList();
+            vm.Top5DateDepart = _context.Voyage.Include(v => v.IdDestinationNavigation).ThenInclude(d => d.Photo).OrderBy(v => v.DateDepart).Take(5).ToList();
+            vm.Top5Destination = _context.Destination.OrderBy(v => v.Nom).Take(5).ToList();
+            return View(vm);
         }
 
         public IActionResult Privacy()
