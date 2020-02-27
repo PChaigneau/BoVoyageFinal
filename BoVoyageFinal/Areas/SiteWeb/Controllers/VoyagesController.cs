@@ -19,12 +19,37 @@ namespace BoVoyageFinal.Areas.SiteWeb.Controllers
             _context = context;
         }
 
+
         // GET: SiteWeb/Voyages
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string destination, DateTime depart, DateTime retour, double PrixMin, double PrixMax)
         {
-            var boVoyageContext = _context.Voyage.Include(v => v.IdDestinationNavigation);
-            return View(await boVoyageContext.ToListAsync());
+            //Chargement des voyages avec destinations et photos associées
+            var VoyagesReq = _context.Voyage.Include(v => v.IdDestinationNavigation).ThenInclude(d => d.Photo).AsNoTracking();
+
+            //Si le filtre par destination est vide, on affecte une chaîne vide à la variable destination
+            if (destination==null){ destination = String.Empty; }
+            //Par défaut, le premier champ de date est à la date du jour
+            if (depart == DateTime.MinValue)
+            { depart = DateTime.Today; }
+            //Si pas de retour, retour = dateMax
+            if (retour == DateTime.MinValue)
+            { retour = DateTime.MaxValue; }
+
+            //On récuprère les voyages...
+            VoyagesReq = VoyagesReq.
+            //...dont le nom de destination contient la chaîne cherchée (éventuellement vide)
+            Where(v => v.IdDestinationNavigation.Nom.Contains(destination));
+            //...
+
+            //On affecte un ViewBag avec les valeurs à afficher dans le formulaire
+            ViewBag.Destination = destination;
+            ViewBag.Depart = depart.ToString("yyyy-MM-dd");
+
+            List<Voyage> Voyages = await VoyagesReq.ToListAsync();
+
+            return View(Voyages);
         }
+
 
         // GET: SiteWeb/Voyages/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -34,9 +59,7 @@ namespace BoVoyageFinal.Areas.SiteWeb.Controllers
                 return NotFound();
             }
 
-            var voyage = await _context.Voyage
-                .Include(v => v.IdDestinationNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var voyage = await _context.Voyage.Include(v => v.IdDestinationNavigation).ThenInclude(d => d.Photo).FirstOrDefaultAsync(m => m.Id == id);
             if (voyage == null)
             {
                 return NotFound();

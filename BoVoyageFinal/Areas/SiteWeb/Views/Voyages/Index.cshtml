@@ -6,7 +6,49 @@
 
 <h1 class="text-center">Voyages</h1>
 
- 
+<h4>Rechercher un voyage</h4>
+<form class="form-inline" asp-action="Index">
+    <label class="mb-2 mr-sm-2" for="inlineFormInputDest">Destination</label>
+    <input name="Destination" class="form-control mb-2 mr-sm-2" id="inlineFormInputDest" placeholder="Votre destination rêvée" value="@ViewBag.Destination">
+
+    <label class="mb-2 mr-sm-2" for="inlineFormInputDateDep">Départ le</label>
+    <input name="depart" type ="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputDateDep" value="@ViewBag.Depart">
+
+    <label class="mb-2 mr-sm-2" for="inlineFormInputDateRet">Retour le</label>
+    <input name="retour" type ="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputDateRet">
+
+    <div class="input-group">
+        <label class="mr-2" for="FormInputPrixMin">Budget</label>
+        <span class="input-group-text">Entre</span>
+        <input name="PrixMin" id="FormInputPrixMin" placeholder="PrixMin" class="form-control">
+        <span class="input-group-text">et</span>
+        <input name="PrixMax" placeholder="PrixMax" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary ml-2">Rechercher</button>
+</form>
+
+<div class="container mt-3 mb-3">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="card col-3 mr-3 ml-3 mt-4 text-center" style="width: 18rem;">
+                <img src="/pictures/@item.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.IdDestinationNavigation.Nom)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Descriptif)</p>
+                    <p class="card-text">@Html.DisplayNameFor(model => model.DateDepart): @Html.DisplayFor(modelItem => item.DateDepart)</p>
+                    <p class="card-text">@Html.DisplayNameFor(model => model.DateRetour): @Html.DisplayFor(modelItem => item.DateRetour)</p>
+                    <p class="card-text">@Html.DisplayNameFor(model => model.PrixHt): @Html.DisplayFor(modelItem => item.PrixHt) (-@Html.DisplayFor(modelItem => item.Reduction))</p>
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+    <!--
     <table class="table">
         <thead>
             <tr>
@@ -66,4 +108,4 @@
             }
         </tbody>
     </table>
-
+     -->

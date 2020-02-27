@@ -4,7 +4,7 @@ CREATE DATABASE BoVoyage
  LOG ON (NAME = BoVoyage_log, FILENAME = N'C:\Users\Adminl\Desktop\BoVoyage\BDD\BoVoyage.ldf')
 GO
 
-
+USE BoVoyage
 CREATE TABLE Client (
 	Id INTEGER NOT NULL
 )
@@ -15,7 +15,7 @@ ALTER TABLE Client ADD Constraint Client_Pk PRIMARY KEY (Id)
 Go
 
 CREATE TABLE Destination 
-    ( Id INTEGER NOT NULL IDENTITY , 
+    ( Id INTEGER NOT NULL , 
      IdParente INTEGER, 
      Nom NVARCHAR (100) NOT NULL , 
      Niveau TINYINT NOT NULL , 
