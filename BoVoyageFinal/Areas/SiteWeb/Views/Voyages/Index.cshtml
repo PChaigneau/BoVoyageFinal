@@ -5,21 +5,23 @@
 }
 
 <h1 class="text-center">Voyages</h1>
-<div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="card" style="width: 18rem;">
-            <img src="/pictures/@item.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.IdDestinationNavigation.Nom)</h5>
-                <p class="card-text">@Html.DisplayFor(modelItem => item.Descriptif)</p>
-                <p class="card-text">@Html.DisplayNameFor(model => model.DateDepart): @Html.DisplayFor(modelItem => item.DateDepart)</p>
-                <p class="card-text">@Html.DisplayNameFor(model => model.DateRetour): @Html.DisplayFor(modelItem => item.DateRetour)</p>
-                <p class="card-text">@Html.DisplayNameFor(model => model.PrixHt): @Html.DisplayFor(modelItem => item.PrixHt) @Html.DisplayFor(modelItem => item.Reduction)</p>
-                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+<div class="container mt-3 mb-3">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="card col-3 mr-3 ml-3 mt-4 text-center" style="width: 18rem;">
+                <img src="/pictures/@item.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.IdDestinationNavigation.Nom)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Descriptif)</p>
+                    <p class="card-text">@Html.DisplayNameFor(model => model.DateDepart): @Html.DisplayFor(modelItem => item.DateDepart)</p>
+                    <p class="card-text">@Html.DisplayNameFor(model => model.DateRetour): @Html.DisplayFor(modelItem => item.DateRetour)</p>
+                    <p class="card-text">@Html.DisplayNameFor(model => model.PrixHt): @Html.DisplayFor(modelItem => item.PrixHt) @Html.DisplayFor(modelItem => item.Reduction)</p>
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>
 
 <!--
