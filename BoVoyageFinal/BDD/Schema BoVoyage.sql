@@ -15,7 +15,7 @@ ALTER TABLE Client ADD Constraint Client_Pk PRIMARY KEY (Id)
 Go
 
 CREATE TABLE Destination 
-    ( Id INTEGER NOT NULL IDENTITY , 
+    ( Id INTEGER NOT NULL , 
      IdParente INTEGER, 
      Nom NVARCHAR (100) NOT NULL , 
      Niveau TINYINT NOT NULL , 
