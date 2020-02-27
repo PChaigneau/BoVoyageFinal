@@ -1,3 +1,24 @@
 ﻿@{
     Layout = "/Views/Shared/_Layout.cshtml";
 }
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand disabled">Administrateur</a>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="BackOffice" asp-controller="Destinations" asp-action="Index">Destination</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="BackOffice" asp-controller="Voyages" asp-action="Index">Voyage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="BackOffice" asp-controller="Personnes" asp-action="Index">Client</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
