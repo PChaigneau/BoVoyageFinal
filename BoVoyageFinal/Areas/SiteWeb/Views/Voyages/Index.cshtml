@@ -5,6 +5,29 @@
 }
 
 <h1 class="text-center">Voyages</h1>
+
+<h4>Rechercher un voyage</h4>
+<form class="form-inline" asp-action="Index">
+    <label class="sr-only" for="inlineFormInputDest">Destination</label>
+    <input name="Destination" class="form-control mb-2 mr-sm-2" id="inlineFormInputDest" placeholder="Votre destination rêvée" value="@ViewBag.Destination">
+
+    <label class="sr-only" for="inlineFormInputDateDep">Départ</label>
+    <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputDateDep">
+
+    <label class="sr-only" for="inlineFormInputDateRet">Retour</label>
+    <input type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputDateRet">
+
+    <div class="input-group">
+        <label class="mr-2" for="FormInputPrixMin">Budget</label>
+        <span class="input-group-text">Entre</span>
+        <input type="number" id="FormInputPrixMin" placeholder="PrixMin" class="form-control">
+        <span class="input-group-text">et</span>
+        <input type="number" placeholder="PrixMax" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary ml-2">Rechercher</button>
+</form>
+
 <div class="row">
     @foreach (var item in Model)
     {
