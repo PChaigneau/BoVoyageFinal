@@ -5,65 +5,81 @@
 }
 
 <h1 class="text-center">Voyages</h1>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card" style="width: 18rem;">
+            <img src="/pictures/@item.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.IdDestinationNavigation.Nom)</h5>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.Descriptif)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.DateDepart): @Html.DisplayFor(modelItem => item.DateDepart)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.DateRetour): @Html.DisplayFor(modelItem => item.DateRetour)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.PrixHt): @Html.DisplayFor(modelItem => item.PrixHt) @Html.DisplayFor(modelItem => item.Reduction)</p>
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+            </div>
+        </div>
+    }
+</div>
 
- 
-    <table class="table">
-        <thead>
+<!--
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDepart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateRetour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlacesDispo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrixHt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reduction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descriptif)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdDestinationNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateDepart)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateRetour)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PlacesDispo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PrixHt)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Reduction)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Descriptif)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IdDestinationNavigation)
-                </th>
-                <th></th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateDepart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateRetour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlacesDispo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrixHt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reduction)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descriptif)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdDestinationNavigation.Nom)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateDepart)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateRetour)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PlacesDispo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PrixHt)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Reduction)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Descriptif)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IdDestinationNavigation.Nom)
-                    </td>
-                    <td>
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
+        }
+    </tbody>
+</table>
+ -->
