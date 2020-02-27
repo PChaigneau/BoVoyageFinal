@@ -38,7 +38,7 @@ insert Voyage(IdDestination, DateDepart, DateRetour, PlacesDispo, PrixHT, Reduct
 (410, '04/07/2020', '04/14/2020', 10, 1099.99, 0.30, 'Séjour d''une semaine en Canada'),
 (113, '05/08/2020', '05/15/2020', 10, 399.99, 0.30, 'Séjour d''une semaine en Bretagne')
 -- delete from Voyage where Voyage.IdDestination = 1
-
+--select * from Voyage
 
 -- Afficher toutes les caractéristiques de la table Personne
 sp_help 'Personne'
@@ -52,26 +52,16 @@ sp_help 'Client'
 
 insert Client(Id)
 values (1)
-
+--select * from Client
 -- Afficher toutes les caractéristiques de la table Voyageur
 sp_help 'Voyageur'
 
 insert Voyageur(Id, Idvoyage) values 
-(1, 9),
-(2, 9)
+(1, 2),
+(2, 2)
 
 -- Ici on a deux voyageurs qui ont voyagé ensemble pour le voyage  IdVoyage 9 et dont la réservation a été faite par le client  Id 1
 
-
--- Afficher toutes les caractéristiques de la table DossierResa
-
-sp_help 'DossierResa'
-
-insert DossierResa (NumeroCB,
-IdClient,
-IdEtatDossier,
-IdVoyage)
-values ('4900560236488955', 1, 4, 9)
 
 -- Afficher toutes les caractéristiques de la table EtatDossier
 
@@ -82,6 +72,13 @@ insert EtatDossier(Id, Libelle) values
 (2, 'En cours'),
 (3, 'Refusée'),
 (4, 'Acceptée')
+
+-- Afficher toutes les caractéristiques de la table DossierResa
+
+sp_help 'DossierResa'
+
+insert DossierResa (NumeroCB, IdClient, IdEtatDossier, IdVoyage) values 
+('4900560236488955', 1, 4, 2)
 
 -- delete from EtatDossier where EtatDossier.Id = 1
 

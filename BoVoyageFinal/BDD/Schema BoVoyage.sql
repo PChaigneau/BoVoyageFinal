@@ -4,7 +4,7 @@ CREATE DATABASE BoVoyage
  LOG ON (NAME = BoVoyage_log, FILENAME = N'C:\Users\Adminl\Desktop\BoVoyage\BDD\BoVoyage.ldf')
 GO
 
-
+USE BoVoyage
 CREATE TABLE Client (
 	Id INTEGER NOT NULL
 )
