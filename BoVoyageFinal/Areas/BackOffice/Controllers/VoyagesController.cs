@@ -12,7 +12,7 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
 {
     //[AllowAnonymous]
     [Area("BackOffice")]
-    [Authorize(Roles = "admin, manager")]
+    [Authorize(Roles = "Admin, manager")]
     public class VoyagesController : Controller
     {
         private readonly BoVoyageContext _context;
