@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BoVoyageFinal.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BoVoyageFinal.Areas.SiteWeb.Controllers
 {
@@ -19,7 +20,7 @@ namespace BoVoyageFinal.Areas.SiteWeb.Controllers
             _context = context;
         }
 
-
+        [AllowAnonymous]
         // GET: SiteWeb/Voyages
         public async Task<IActionResult> Index(string destination, DateTime depart, DateTime retour, decimal prixMin, decimal prixMax)
         {
@@ -72,6 +73,7 @@ namespace BoVoyageFinal.Areas.SiteWeb.Controllers
         //}
 
 
+        [AllowAnonymous]
             // GET: SiteWeb/Voyages/Details/5
             public async Task<IActionResult> Details(int? id)
         {
