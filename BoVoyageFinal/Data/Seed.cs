@@ -28,10 +28,11 @@ namespace BoVoyageFinal.Data
                 // On crée l'utilisateur administrateur à partir des infos stockées
                 // dans les paramètres de l'appli
                 IConfigurationSection userSettings = Configuration.GetSection("UserSettings");
-                var admin = new IdentityUser
-                {
-                    UserName = userSettings["UserName"],
-                    Email = userSettings["UserEmail"]
+            var admin = new IdentityUser
+            {
+                UserName = userSettings["UserName"],
+                Email = userSettings["UserEmail"],
+                EmailConfirmed = true 
                 };
                 string pwd = userSettings["UserPassword"];
 
