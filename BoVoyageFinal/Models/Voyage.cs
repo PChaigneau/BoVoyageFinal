@@ -14,11 +14,18 @@ namespace BoVoyageFinal.Models
 
         [Required]
         public int Id { get; set; }
+
         [Required]
         public int IdDestination { get; set; }
+
         [Required]
+        [Display(Name = "Date de retour")]
+        [DataType(DataType.Date)]
         public DateTime DateDepart { get; set; }
+
         [Required]
+        [Display(Name = "Date de retour")]
+        [DataType(DataType.Date)]
         public DateTime DateRetour { get; set; }
         [Required]
         public int PlacesDispo { get; set; }
