@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BoVoyageFinal.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BoVoyageFinal.Controllers
 {
@@ -20,7 +21,7 @@ namespace BoVoyageFinal.Controllers
             _logger = logger;
             _context = context;
         }
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
             HomeVM vm = new HomeVM();
@@ -29,7 +30,7 @@ namespace BoVoyageFinal.Controllers
             // vm.Top5Destination = _context.Destination.Include(d => d.Photo).OrderBy(v => v.Nom).Take(5).ToList();
             return View(vm);
         }
-
+        [AllowAnonymous]
         public IActionResult Privacy()
         {
             return View();
@@ -40,12 +41,13 @@ namespace BoVoyageFinal.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-        public IActionResult Contact(int id, string nom)
+        [AllowAnonymous]
+        public IActionResult Contact()
         {
 
             return View();
         }
+        [AllowAnonymous]
         public IActionResult About()
         {
 

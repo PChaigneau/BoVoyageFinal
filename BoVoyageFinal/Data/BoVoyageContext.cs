@@ -24,8 +24,6 @@ namespace BoVoyageFinal.Models
         public virtual DbSet<Voyage> Voyage { get; set; }
         public virtual DbSet<Voyageur> Voyageur { get; set; }
 
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Client>(entity =>

@@ -24,7 +24,6 @@
     <Folder Include="Areas\BackOffice\Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\SiteWeb\Data\" />
-    <Folder Include="Areas\SiteWeb\Models\" />
     <Folder Include="wwwroot\pictures\" />
   </ItemGroup>
 

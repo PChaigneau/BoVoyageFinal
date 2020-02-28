@@ -1,5 +1,5 @@
--- Afficher toutes les caractéristiques de la table Destination
-sp_help 'Destination'
+﻿-- Afficher toutes les caractéristiques de la table Destination
+--sp_help 'Destination'
 
 -- Creation des 5 continents (niveau 1)
 
@@ -29,7 +29,7 @@ insert Destination(Id, IdParente, Nom, Niveau, Description) values
 
 -- Afficher toutes les caractéristiques de la table Voyage
 
-sp_help 'Voyage'
+--sp_help 'Voyage'
 
 insert Voyage(IdDestination, DateDepart, DateRetour, PlacesDispo, PrixHT, Reduction, Descriptif) values 
 (111, '03/07/2020', '03/14/2020', 10, 789.99, 0.30, 'Séjour d''une semaine en Guadeloupe'),
@@ -41,20 +41,20 @@ insert Voyage(IdDestination, DateDepart, DateRetour, PlacesDispo, PrixHT, Reduct
 --select * from Voyage
 
 -- Afficher toutes les caractéristiques de la table Personne
-sp_help 'Personne'
+--sp_help 'Personne'
 
 insert Personne(TypePers, Civilite, Nom, Prenom, Email, Telephone, Datenaissance) values 
 (1, 'M', 'Deniro', 'Robert', 'robert.deniro@gmail.com', '0662661236', '08/17/1943'),
 (2, 'F', 'Thurman', 'Uma', 'uma.thurman@gmail.com', '0668641276', '04/29/1970')
 
 -- Afficher toutes les caractéristiques de la table Client
-sp_help 'Client'
+--sp_help 'Client'
 
 insert Client(Id)
 values (1)
 --select * from Client
 -- Afficher toutes les caractéristiques de la table Voyageur
-sp_help 'Voyageur'
+--sp_help 'Voyageur'
 
 insert Voyageur(Id, Idvoyage) values 
 (1, 2),
@@ -65,7 +65,7 @@ insert Voyageur(Id, Idvoyage) values
 
 -- Afficher toutes les caractéristiques de la table EtatDossier
 
-sp_help 'EtatDossier'
+--sp_help 'EtatDossier'
 
 insert EtatDossier(Id, Libelle) values 
 (1, 'En attente'),
@@ -75,7 +75,7 @@ insert EtatDossier(Id, Libelle) values
 
 -- Afficher toutes les caractéristiques de la table DossierResa
 
-sp_help 'DossierResa'
+--sp_help 'DossierResa'
 
 insert DossierResa (NumeroCB, IdClient, IdEtatDossier, IdVoyage) values 
 ('4900560236488955', 1, 4, 2)
@@ -84,7 +84,7 @@ insert DossierResa (NumeroCB, IdClient, IdEtatDossier, IdVoyage) values
 
 
 -- Afficher toutes les caractéristiques de la table Photo
-sp_help 'Photo'
+--sp_help 'Photo'
 
 insert Photo(NomFichier, IdDestination) values 
 ('Guadeloupe_Photo.jpg', 111),
