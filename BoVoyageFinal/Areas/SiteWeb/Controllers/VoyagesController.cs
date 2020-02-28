@@ -67,10 +67,18 @@ namespace BoVoyageFinal.Areas.SiteWeb.Controllers
             return View(voyages);
         }
 
-        //public async Task<IActionResult> Book(int? id)
-        //{ 
-            
-        //}
+        public async Task<IActionResult> BookIndex(int id)
+        {
+
+            Voyage voyage = await _context.Voyage.Include(v => v.IdDestinationNavigation).SingleOrDefaultAsync(v=>v.Id==id);
+
+            if (voyage == null)
+            {
+                return NotFound();
+            }
+
+            return View(voyage);
+        }
 
 
         [AllowAnonymous]
