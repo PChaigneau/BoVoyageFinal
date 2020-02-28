@@ -10,8 +10,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BoVoyageFinal.Areas.BackOffice.Controllers
 {
+    [AllowAnonymous]
     [Area("BackOffice")]
-    [Authorize(Roles = "admin, manager")]
+    //[Authorize(Roles = "admin, manager")]
     public class VoyagesController : Controller
     {
         private readonly BoVoyageContext _context;
@@ -46,7 +47,7 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
 
             return View(voyage);
         }
-        [Authorize(Roles = "admin, manager")]
+ 
         // GET: BackOffice/Voyages/Create
         public IActionResult Create()
         {
@@ -57,7 +58,7 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
         // POST: BackOffice/Voyages/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "admin, manager")]
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,IdDestination,DateDepart,DateRetour,PlacesDispo,PrixHt,Reduction,Descriptif")] Voyage voyage)
@@ -71,7 +72,7 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
             ViewData["IdDestination"] = new SelectList(_context.Destination, "Id", "Nom", voyage.IdDestination);
             return View(voyage);
         }
-        [Authorize(Roles = "admin, manager")]
+
         // GET: BackOffice/Voyages/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -88,7 +89,7 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
             ViewData["IdDestination"] = new SelectList(_context.Destination, "Id", "Nom", voyage.IdDestination);
             return View(voyage);
         }
-        [Authorize(Roles = "admin, manager")]
+
         // POST: BackOffice/Voyages/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -124,7 +125,7 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
             ViewData["IdDestination"] = new SelectList(_context.Destination, "Id", "Nom", voyage.IdDestination);
             return View(voyage);
         }
-        [Authorize(Roles = "admin, manager")]
+
         // GET: BackOffice/Voyages/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -143,7 +144,7 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
 
             return View(voyage);
         }
-        [Authorize(Roles = "admin, manager")]
+
         // POST: BackOffice/Voyages/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BoVoyageFinal.Areas.BackOffice.Controllers
 {
-    [Authorize(Roles = "admin, manager")]
+    //[Authorize(Roles = "admin, manager")]
+    [AllowAnonymous]
     [Area("BackOffice")]
     public class PersonnesController : Controller
     {
