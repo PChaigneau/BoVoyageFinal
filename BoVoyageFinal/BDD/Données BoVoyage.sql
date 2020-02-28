@@ -1,4 +1,4 @@
-﻿-- Afficher toutes les caractéristiques de la table Destination
+-- Afficher toutes les caractéristiques de la table Destination
 sp_help 'Destination'
 
 -- Creation des 5 continents (niveau 1)

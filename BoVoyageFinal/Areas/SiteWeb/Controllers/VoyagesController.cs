@@ -21,33 +21,49 @@ namespace BoVoyageFinal.Areas.SiteWeb.Controllers
 
 
         // GET: SiteWeb/Voyages
-        public async Task<IActionResult> Index(string destination, DateTime depart, DateTime retour, double PrixMin, double PrixMax)
+        public async Task<IActionResult> Index(string destination, DateTime depart, DateTime retour, decimal prixMin, decimal prixMax)
         {
+            //Affectation par propriétés dynamiques des valeurs à retransmettre inchangées à la vue                     
+            ViewBag.Retour = retour.ToString("yyyy-MM-dd");
+            ViewBag.PrixMin = prixMin;
+            ViewBag.PrixMax = prixMax;
+
             //Chargement des voyages avec destinations et photos associées
-            var VoyagesReq = _context.Voyage.Include(v => v.IdDestinationNavigation).ThenInclude(d => d.Photo).AsNoTracking();
+            var voyagesReq = _context.Voyage.Include(v => v.IdDestinationNavigation).ThenInclude(d => d.Photo).AsNoTracking();
 
             //Si le filtre par destination est vide, on affecte une chaîne vide à la variable destination
             if (destination==null){ destination = String.Empty; }
-            //Par défaut, le premier champ de date est à la date du jour
+            //Par défaut, le premier champ de date est mis à la date du jour
             if (depart == DateTime.MinValue)
-            { depart = DateTime.Today; }
-            //Si pas de retour, retour = dateMax
-            if (retour == DateTime.MinValue)
-            { retour = DateTime.MaxValue; }
+            { 
+                depart = DateTime.Today; 
+            }
 
-            //On récuprère les voyages...
-            VoyagesReq = VoyagesReq.
-            //...dont le nom de destination contient la chaîne cherchée (éventuellement vide)
-            Where(v => v.IdDestinationNavigation.Nom.Contains(destination));
-            //...
-
-            //On affecte un ViewBag avec les valeurs à afficher dans le formulaire
+            //Affectation par propriétés dynamiques des valeurs modifiées par l'action à retransmettre à la vue
             ViewBag.Destination = destination;
             ViewBag.Depart = depart.ToString("yyyy-MM-dd");
 
-            List<Voyage> Voyages = await VoyagesReq.ToListAsync();
 
-            return View(Voyages);
+            //Si retour<depart (comprend le cas où retour n'est pas renseigné), retour prend la plus haute valeur possible
+            if (retour < depart )
+            { retour = DateTime.MaxValue; }
+            //Si pas de PrixMax renseigné, PrixMax prend la plus haute valeur possible
+            if(prixMax==0){prixMax=decimal.MaxValue;}
+            
+
+            //On récuprère les voyages...
+            voyagesReq = voyagesReq.
+            //...dont le nom de destination contient la chaîne cherchée (éventuellement vide),
+            Where(v => v.IdDestinationNavigation.Nom.Contains(destination)
+            //...dont la date de départ se situe entre les dates de depart et retour renseignées ou définies par défaut,
+            && ((v.DateDepart>=depart) && (v.DateDepart<=retour))
+            //...et dont le prix se situe dans la fourchette de prix renseignée ou définie par défaut
+            && ((v.PrixHt>=prixMin) && (v.PrixHt<=prixMax))
+            ); 
+
+            List<Voyage> voyages = await voyagesReq.ToListAsync();
+
+            return View(voyages);
         }
 
         //public async Task<IActionResult> Book(int? id)
