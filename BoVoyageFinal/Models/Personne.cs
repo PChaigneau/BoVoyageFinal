@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace BoVoyageFinal.Models
 {
@@ -18,7 +17,6 @@ namespace BoVoyageFinal.Models
         public string Prenom { get; set; }
         public string Email { get; set; }
         public string Telephone { get; set; }
-        [DataType(DataType.Date)]
         public DateTime? Datenaissance { get; set; }
 
         public virtual Client Client { get; set; }
