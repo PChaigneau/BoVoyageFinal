@@ -51,7 +51,9 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
         // GET: BackOffice/Destinations/Create
         public IActionResult Create()
         {
-            ViewData["IdParente"] = new SelectList(_context.Destination, "Id", "Nom");
+            //ViewData["IdParente"] = new SelectList(_context.Destination, "Id", "Nom");
+            ViewData["IdParente"] = new SelectList(_context.Destination.Where(d => d.Niveau < 3).OrderBy(d => d.Nom), "Id", "Nom");
+
             return View();
         }
 
@@ -68,7 +70,9 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdParente"] = new SelectList(_context.Destination, "Id", "Nom", destination.IdParente);
+
+            // L'objectif de la requête ci-dessous serait de n'afficher que les IdParente de destinations de niveau inférieur à 3, donc pas les régions
+            ViewData["IdParente"] = new SelectList(_context.Destination.Where(d => d.Niveau < 3).OrderBy(d => d.Nom), "Id", "Nom", destination.IdParente);
             return View(destination);
         }
 

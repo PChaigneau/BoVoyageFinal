@@ -14,7 +14,8 @@ namespace BoVoyageFinal.Models
             Voyage = new HashSet<Voyage>();
         }
 
-        [Required(ErrorMessage = "Champ obligatoire."), Range(0, 99999)]
+        [Required(ErrorMessage = "Champ obligatoire. Veuillez saisir un Id compris entre 0 et 99999"), Range(0, 99999)]
+        [Display(Name = "Id")]
         public int Id { get; set; }
         
         public int? IdParente { get; set; }
@@ -23,10 +24,10 @@ namespace BoVoyageFinal.Models
         [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$", ErrorMessage = "Le genre doit comporter des lettres, tirets ou espaces, et commencer par une majuscule")]
         public string Nom { get; set; }
 
-        [Required(ErrorMessage = "Champ obligatoire. Veuillez sélectionner un niveau compris en 1 et 3."), Range(0, 99999)]
+        [Required(ErrorMessage = "Champ obligatoire. Veuillez sélectionner un niveau compris en 1 et 3."), Range(0, 3)]
         public byte Niveau { get; set; }
 
-        [Required(ErrorMessage = "Champ obligatoire. Veuillez renseigner une description comprise entre 20 et 1500 caractères."), MinLength(20), StringLength(1500)]
+        [Required(ErrorMessage = "Champ obligatoire. Veuillez renseigner une description comprise entre 5 et 1500 caractères."), MinLength(5), StringLength(1500)]
         public string Description { get; set; }
 
         public virtual Destination IdParenteNavigation { get; set; }

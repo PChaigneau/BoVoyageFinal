@@ -24,7 +24,10 @@ namespace BoVoyageFinal.Models
         public string Prenom { get; set; }
 
         [Required(ErrorMessage = "Champ obligatoire. Veuillez saisir un email."), MinLength(1), StringLength(30)]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
         public string Telephone { get; set; }
 
         [Required(ErrorMessage = "Champ obligatoire. Veuillez renseigner une date de naissance.")]
