@@ -39,6 +39,8 @@ namespace BoVoyageFinal.Models
 
             modelBuilder.Entity<Destination>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
                 entity.Property(e => e.Description).HasMaxLength(500);
 
                 entity.Property(e => e.Niveau).HasComment(@"1 : Continent

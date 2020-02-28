@@ -14,33 +14,21 @@ namespace BoVoyageFinal.Models
 
         [Required]
         public int Id { get; set; }
-
         [Required]
         public int IdDestination { get; set; }
-
         [Required]
-        [Display(Name = "Date de départ")]
-        [DataType(DataType.Date)]
         public DateTime DateDepart { get; set; }
-
         [Required]
-        [Display(Name = "Date de retour")]
-        [DataType(DataType.Date)]
         public DateTime DateRetour { get; set; }
-
         [Required]
-        [Display(Name = "Places disponibles")]
         public int PlacesDispo { get; set; }
-
         [Required]
-        [Display(Name = "Prix HT")]
         public decimal PrixHt { get; set; }
-
+        
         [Required]
         [Display(Name = "Réduction")]
         [DisplayFormat(DataFormatString = "{0:P0}")]
         public decimal Reduction { get; set; }
-
         [Display(Name = "Descriptif")]
         public string Descriptif { get; set; }
 

@@ -67,9 +67,15 @@ namespace BoVoyageFinal.Areas.SiteWeb.Controllers
             return View(voyages);
         }
 
+        //public async Task<IActionResult> Book(int? id)
+        //{ 
+            
+        //}
+
+
         [AllowAnonymous]
-        // GET: SiteWeb/Voyages/Details/5
-        public async Task<IActionResult> Details(int? id)
+            // GET: SiteWeb/Voyages/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
