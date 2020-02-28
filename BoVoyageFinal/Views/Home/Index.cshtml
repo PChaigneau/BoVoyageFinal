@@ -10,7 +10,7 @@
 
 <div class="container-fluid mt-3 mb-3">
     <h3>Top 5 des voyages les moins chers</h3>
-    <div class="row">
+    <div class="row justify-content-center">
         @foreach (var item in Model.Top5Prix)
         {
             <div class="card col-2 mr-3 ml-3 mt-4 text-center">
@@ -21,7 +21,7 @@
                     <p class="card-text">@Html.DisplayNameFor(model => item.DateDepart): @Html.DisplayFor(modelItem => item.DateDepart)</p>
                     <p class="card-text">@Html.DisplayNameFor(model => item.DateRetour): @Html.DisplayFor(modelItem => item.DateRetour)</p>
                     <p class="card-text">@Html.DisplayNameFor(model => item.PrixHt): @Html.DisplayFor(modelItem => item.PrixHt) (-@Html.DisplayFor(modelItem => item.Reduction))</p>
-                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-primary" asp-area="SiteWeb" asp-controller="Voyages" asp-action="Details" asp-route-id="@item.Id">Details</a>
                 </div>
             </div>
         }
@@ -31,18 +31,18 @@
 
 <div class="container-fluid mt-3 mb-3">
     <h3>Top 5 des voyages dont la date de départ est la plus proche</h3>
-    <div class="row">
+    <div class="row justify-content-center">
         @foreach (var item in Model.Top5DateDepart)
         {
             <div class="card col-2 mr-3 ml-3 mt-4 text-center">
                 <img src="/pictures/@item.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.IdDestinationNavigation.Nom)</h5>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.Descriptif)</p>
+                    <p class="card-text" >@Html.DisplayFor(modelItem => item.Descriptif)</p>
                     <p class="card-text">@Html.DisplayNameFor(model => item.DateDepart): @Html.DisplayFor(modelItem => item.DateDepart)</p>
                     <p class="card-text">@Html.DisplayNameFor(model => item.DateRetour): @Html.DisplayFor(modelItem => item.DateRetour)</p>
                     <p class="card-text">@Html.DisplayNameFor(model => item.PrixHt): @Html.DisplayFor(modelItem => item.PrixHt) (-@Html.DisplayFor(modelItem => item.Reduction))</p>
-                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-primary" asp-area="SiteWeb" asp-controller="Voyages" asp-action="Details" asp-route-id="@item.Id">Details</a>
                 </div>
             </div>
         }
@@ -51,10 +51,10 @@
 
 <div class="container-fluid mt-3 mb-3">
     <h3>Top 5 des voyages des destinations dont les pays sont les plus représentés</h3>
-    <div class="row">
+    <div class="row justify-content-between">
         @foreach (var item in Model.Top5Destination)
         {
-            <a class="btn btn-primary" asp-area="SiteWeb" asp-controller="Voyages" asp-route-Destination="@item.Nom">Details</a>
+        <a class="btn btn-primary" asp-area="SiteWeb" asp-controller="Voyages" asp-route-Destination="@item.Nom">@item.Nom</a>
         }
     </div>
 </div>
