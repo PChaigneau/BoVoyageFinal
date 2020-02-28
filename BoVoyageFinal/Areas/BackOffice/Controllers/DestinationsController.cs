@@ -22,7 +22,6 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
         // GET: BackOffice/Destinations
         public async Task<IActionResult> Index()
         {
-           
             var boVoyageContext = await _context.Destination.ToListAsync();
             return View(boVoyageContext);
         }
