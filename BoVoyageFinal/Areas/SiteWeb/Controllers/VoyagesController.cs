@@ -72,8 +72,9 @@ namespace BoVoyageFinal.Areas.SiteWeb.Controllers
             
         //}
 
+
         [AllowAnonymous]
-        // GET: SiteWeb/Voyages/Details/5
+            // GET: SiteWeb/Voyages/Details/5
             public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
