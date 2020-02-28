@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BoVoyageFinal.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BoVoyageFinal.Areas.BackOffice.Controllers
 {
+    //[Authorize(Roles = "admin, manager")]
+    [AllowAnonymous]
     [Area("BackOffice")]
     public class PersonnesController : Controller
     {
