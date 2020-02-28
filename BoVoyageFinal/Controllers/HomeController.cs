@@ -26,7 +26,7 @@ namespace BoVoyageFinal.Controllers
             HomeVM vm = new HomeVM();
             vm.Top5Prix = _context.Voyage.Include(v => v.IdDestinationNavigation).ThenInclude(d => d.Photo).OrderBy(v => v.PrixHt).Take(5).ToList();
             vm.Top5DateDepart = _context.Voyage.Include(v => v.IdDestinationNavigation).ThenInclude(d => d.Photo).OrderBy(v => v.DateDepart).Take(5).ToList();
-            vm.Top5Destination = _context.Destination.Include(d => d.Photo).OrderBy(v => v.Nom).Take(5).ToList();
+            // vm.Top5Destination = _context.Destination.Include(d => d.Photo).OrderBy(v => v.Nom).Take(5).ToList();
             return View(vm);
         }
 

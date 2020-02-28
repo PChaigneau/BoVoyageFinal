@@ -48,19 +48,4 @@
     </div>
 </div>
 
-<div class="container-fluid mt-3 mb-3">
-    <h3>Top 5 des voyages des destinations dont les pays sont les plus représentés</h3>
-    <div class="row justify-content-between">
-        @foreach (var item in Model.Top5Destination)
-        {
-            <div class="card col-2 mr-3 ml-3 mt-4 text-center">
-                <img src="/pictures/@item.Photo.First().NomFichier" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nom)</h5>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-                    <a class="btn btn-primary" asp-area="SiteWeb" asp-controller="Voyages" asp-route-Destination="@item.Nom">@item.Nom</a>
-                </div>
-            </div>
-        }
-    </div>
-</div>
+
