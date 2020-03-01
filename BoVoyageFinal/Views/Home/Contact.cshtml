@@ -3,23 +3,21 @@
 }
 <h2>@ViewData["Title"]</h2>
 @*<h2>@ViewData["id"]</h2>*@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 <!------ Include the above in your HEAD tag ---------->
-
-<div class="jumbotron jumbotron-sm">
-    <div class="container">
+<!-- <div class="jumbotron jumbotron-sm">
+    <div class="containercontainer-fluid p-4" style="background-color: #e3f2fd;">
         <div class="row">
             <div class="col-sm-12 col-lg-12">
-                <h1 class="h1">
-                    Contact us <small>Feel free to contact us</small>
-                </h1>
+                <h1>Contactez nous</h1>
             </div>
         </div>
     </div>
-</div>
-<div class="container">
+</div> -->
+
+<div class="container-fluid p-4" style="background-color: #e3f2fd;">
     <div class="row">
         <div class="col-md-8">
             <div class="well well-sm">
@@ -27,15 +25,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name">
-                                    Nom
-                                </label>
+                                <label for="name">Nom</label>
                                 <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
                             </div>
                             <div class="form-group">
-                                <label for="email">
-                                    Adresse Email
-                                </label>
+                                <label for="email">Email</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-envelope"></span>
@@ -44,12 +38,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="subject">
-                                    Subject
-                                </label>
+                                <label for="subject">Sujet</label>
                                 <select id="subject" name="subject" class="form-control" required="required">
                                     <option value="na" selected="">Le theme de votre demande:</option>
-                                    <option value="service">GService aprés-vente</option>
+                                    <option value="service">Service aprés-vente</option>
                                     <option value="Propositions">Propositions</option>
                                     <option value="Assurance">Assurance</option>
                                 </select>
@@ -57,17 +49,12 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name">
-                                    Message
-                                </label>
-                                <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
-                                          placeholder="Message"></textarea>
+                                <label for="name">Message</label>
+                                <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required" placeholder="Message"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
-                                Envoyer le message
-                            </button>
+                            <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">Envoyer le message</button>
                         </div>
                     </div>
                 </form>
@@ -77,16 +64,10 @@
             <form>
                 <legend><span class="glyphicon glyphicon-globe"></span>Nos Bureaux</legend>
                 <address>
-                    <strong>BoVoyage</strong><br>
-                    19 Boulevard de la republique<br>
-                    SParis, 75010<br>
-                    <abbr title="Phone">
-                        P:
-                    </abbr>
-                    (+33) 01-23-25-58-53
+                    <strong>BoVoyage</strong><br>19 Boulevard de la republique<br>Paris, 75010<br><abbr title="Phone">(+33) 01-23-25-58-53</abbr>
                 </address>
                 <address>
-                    <strong>Full Name</strong><br>
+                    <strong>Email</strong><br>
                     <a href="mailto:#">cherif.bem@gmail.com</a>
                 </address>
             </form>
