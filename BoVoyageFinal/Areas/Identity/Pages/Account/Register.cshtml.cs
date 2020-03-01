@@ -58,7 +58,7 @@ namespace BoVoyageFinal.Areas.Identity.Pages.Account
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "les mots de passent sont différents")]
             public string ConfirmPassword { get; set; }
         }
 

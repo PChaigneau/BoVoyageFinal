@@ -17,6 +17,13 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="BackOffice" asp-controller="Personnes" asp-action="Index">Client</a>
                     </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="BackOffice" asp-controller="Personnes" asp-action="AddManager">Manager</a>
+                        </li>
+                    }
+
                 </ul>
             </div>
         </div>
