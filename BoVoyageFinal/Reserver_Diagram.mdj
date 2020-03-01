@@ -779,7 +779,7 @@
 													"top": 479,
 													"width": 167,
 													"height": 52,
-													"text": "Pour chaque voyageur entrer adresse et date naissance ainsi que num téléphone",
+													"text": "Pour chaque voyageur entrer adresse mail et date naissance ainsi que num téléphone",
 													"wordWrap": true
 												},
 												{
@@ -4917,8 +4917,8 @@
 									},
 									"font": "Arial;13;0",
 									"left": 744,
-									"top": 600,
-									"width": 105.25537109375,
+									"top": 592,
+									"width": 113,
 									"height": 51,
 									"text": "Création de Etat Dossier et DossierResa"
 								},
@@ -5254,8 +5254,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 473,
-											"top": 649,
+											"left": 511,
+											"top": 652,
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 15,
@@ -5275,8 +5275,8 @@
 											},
 											"visible": null,
 											"font": "Arial;13;0",
-											"left": 478,
-											"top": 635,
+											"left": 518,
+											"top": 639,
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 30,
@@ -5296,8 +5296,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 462,
-											"top": 676,
+											"left": 496,
+											"top": 679,
 											"height": 13,
 											"alpha": -1.5707963267948966,
 											"distance": 15,
@@ -5315,7 +5315,7 @@
 										"$ref": "AAAAAAFwi6CbaEZIS24="
 									},
 									"lineStyle": 1,
-									"points": "422:652;514:687",
+									"points": "422:651;504:672;531:687",
 									"showVisibility": true,
 									"nameLabel": {
 										"$ref": "AAAAAAFwi6EFyUZy6zY="
@@ -5553,7 +5553,7 @@
 										"$ref": "AAAAAAFwi6ERZEaDi5w="
 									},
 									"lineStyle": 1,
-									"points": "669:636;743:630"
+									"points": "669:634;743:624"
 								},
 								{
 									"_type": "UMLNoteView",
@@ -5596,6 +5596,64 @@
 									"width": 132.3662109375,
 									"height": 40,
 									"text": "MAJ EtatDossier>Libellé"
+								},
+								{
+									"_type": "UMLNoteView",
+									"_id": "AAAAAAFwjAIgMwhiQE0=",
+									"_parent": {
+										"$ref": "AAAAAAFwiyCrkun4AJs="
+									},
+									"font": "Arial;13;0",
+									"left": 608,
+									"top": 192,
+									"width": 182.6142578125,
+									"height": 64,
+									"text": "Vue basée sur un modèle pour vue agrégeant les propriétés de Voyage-Personne-Voyageur"
+								},
+								{
+									"_type": "UMLNoteLinkView",
+									"_id": "AAAAAAFwjAJlswhnl7Y=",
+									"_parent": {
+										"$ref": "AAAAAAFwiyCrkun4AJs="
+									},
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFwjAIgMwhiQE0="
+									},
+									"tail": {
+										"$ref": "AAAAAAFwiycj6eo96uo="
+									},
+									"lineStyle": 1,
+									"points": "637:263;648:256"
+								},
+								{
+									"_type": "UMLNoteView",
+									"_id": "AAAAAAFwjAJ1zwhq61M=",
+									"_parent": {
+										"$ref": "AAAAAAFwiyCrkun4AJs="
+									},
+									"font": "Arial;13;0",
+									"left": 400,
+									"top": 440,
+									"width": 129,
+									"height": 64,
+									"text": "vue partielle basée sur Personne et Voyageur"
+								},
+								{
+									"_type": "UMLNoteLinkView",
+									"_id": "AAAAAAFwjAMmWghuR24=",
+									"_parent": {
+										"$ref": "AAAAAAFwiyCrkun4AJs="
+									},
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFwjAJ1zwhq61M="
+									},
+									"tail": {
+										"$ref": "AAAAAAFwizj3++t5TKs="
+									},
+									"lineStyle": 1,
+									"points": "361:492;399:485"
 								}
 							]
 						}
@@ -6262,7 +6320,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFwiyEyxun8yGw="
 									},
-									"name": "Pour chaque voyageur entrer adresse et date naissance ainsi que num téléphone"
+									"name": "Pour chaque voyageur entrer adresse mail et date naissance ainsi que num téléphone"
 								},
 								{
 									"_type": "UMLInitialNode",
