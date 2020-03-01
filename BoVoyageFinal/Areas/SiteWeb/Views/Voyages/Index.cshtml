@@ -6,33 +6,36 @@
 
 <h1 class="text-center">Voyages</h1>
 
-<h4>Rechercher un voyage</h4>
-<form class="form-inline" asp-action="Index">
-    <label class="mb-2 mr-sm-2" for="inlineFormInputDest">Destination</label>
-    <input name="Destination" class="form-control mb-2 mr-sm-2" id="inlineFormInputDest" placeholder="Votre destination rêvée" value="@ViewBag.Destination">
+<div class="container-fluid mt-3 mb-3 p-2" style="background-color: #e3f2fd;">
+    
+    <form class="form-inline justify-content-center" asp-action="Index">
+        <h5 class="text-left">Rechercher un voyage</h5> 
+        <label class="mb-2 mr-sm-2" for="inlineFormInputDest">Destination</label>
+        <input name="Destination" class="form-control mb-2 mr-sm-2" id="inlineFormInputDest" placeholder="Votre destination rêvée" value="@ViewBag.Destination">
 
-    <label class="mb-2 mr-sm-2" for="inlineFormInputDateDep">Départ le</label>
-    <input name="depart" type ="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputDateDep" value="@ViewBag.Depart">
+        <label class="mb-2 mr-sm-2" for="inlineFormInputDateDep">Départ le</label>
+        <input name="depart" type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputDateDep" value="@ViewBag.Depart">
 
-    <label class="mb-2 mr-sm-2" for="inlineFormInputDateRet">Retour le</label>
-    <input name="retour" type ="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputDateRet">
+        <label class="mb-2 mr-sm-2" for="inlineFormInputDateRet">Retour le</label>
+        <input name="retour" type="date" class="form-control mb-2 mr-sm-2" id="inlineFormInputDateRet">
 
-    <div class="input-group">
-        <label class="mr-2" for="FormInputPrixMin">Budget</label>
-        <span class="input-group-text">Entre</span>
-        <input name="PrixMin" id="FormInputPrixMin" placeholder="PrixMin" class="form-control">
-        <span class="input-group-text">et</span>
-        <input name="PrixMax" placeholder="PrixMax" class="form-control">
-    </div>
+        <div class="input-group">
+            <label class="mr-2" for="FormInputPrixMin">Budget</label>
+            <span class="input-group-text">Entre</span>
+            <input name="PrixMin" id="FormInputPrixMin" placeholder="PrixMin" class="form-control">
+            <span class="input-group-text">et</span>
+            <input name="PrixMax" placeholder="PrixMax" class="form-control">
+        </div>
 
-    <button type="submit" class="btn btn-primary ml-2">Rechercher</button>
-</form>
+        <button type="submit" class="btn btn-primary ml-2">Rechercher</button>
+    </form>
+</div>
 
-<div class="container-fluid mt-3 mb-3">
+<div class="container-fluid mt-3 mb-3 p-2" style="background-color: #e3f2fd;">
     <div class="row justify-content-center">
         @foreach (var item in Model)
         {
-            <div class="card col-2 mr-3 ml-3 mt-4 text-center" style="width: 18rem;">
+            <div class="card col-2 mr-3 ml-3 mt-4 p-2 text-center" style="width: 18rem;">
                 <img src="/pictures/@item.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.IdDestinationNavigation.Nom)</h5>
@@ -48,64 +51,64 @@
 </div>
 
 
-    <!--
-    <table class="table">
-        <thead>
+<!--
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDepart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateRetour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlacesDispo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrixHt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reduction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descriptif)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdDestinationNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateDepart)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateRetour)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PlacesDispo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PrixHt)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Reduction)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Descriptif)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IdDestinationNavigation)
-                </th>
-                <th></th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateDepart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateRetour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlacesDispo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrixHt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reduction)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descriptif)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdDestinationNavigation.Nom)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateDepart)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateRetour)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PlacesDispo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PrixHt)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Reduction)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Descriptif)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IdDestinationNavigation.Nom)
-                    </td>
-                    <td>
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-     -->
+        }
+    </tbody>
+</table>
+ -->

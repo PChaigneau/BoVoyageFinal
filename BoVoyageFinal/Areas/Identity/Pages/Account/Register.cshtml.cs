@@ -45,20 +45,23 @@ namespace BoVoyageFinal.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Veuillez saisir un Email")]
+            [RegularExpression("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$", ErrorMessage = "Veuillez saisir un Email valide")]
+            [DataType(DataType.EmailAddress)]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Veuillez saisir un Mot de Passe")]
+            [StringLength(250, ErrorMessage = "Le Mot de Passe doit contenir au minimum 8 caractère, une majuscule et un caractère alphanumérique", MinimumLength = 8)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Mot de Passe")]
             public string Password { get; set; }
 
+            [Required(ErrorMessage = "Veuillez confirmer votre Mot de Passe")]
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "les mots de passent sont différents")]
+            [Display(Name = "Confirmez le Mot de Passe")]
+            [StringLength(250, ErrorMessage = "Le Mot de Passe doit contenir au minimum 8 caractère, une majuscule et un caractère alphanumérique", MinimumLength = 8)]
+            [Compare("Password", ErrorMessage = "La confirmation ne correspond pas au mot de passe renseigné.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -78,7 +81,7 @@ namespace BoVoyageFinal.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("L'utilisateur a créé un nouveau compte avec Mot de Passe.");
 
                     // On assigne le rôle Member par défaut aux nouveaux utilisateurs enregistrés
                     await _userManager.AddToRoleAsync(user, "Member");

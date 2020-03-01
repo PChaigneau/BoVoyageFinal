@@ -31,6 +31,10 @@ namespace BoVoyageFinal.Areas.Identity.Pages.Account.Manage
 
         public string Username { get; set; }
 
+        [Required(ErrorMessage = "Veuillez saisir un Email")]
+        [RegularExpression("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$", ErrorMessage = "Veuillez saisir un Email valide")]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
@@ -43,9 +47,10 @@ namespace BoVoyageFinal.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
-            [Display(Name = "New email")]
+            [Required(ErrorMessage = "Veuillez saisir un Email")]
+            [RegularExpression("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$", ErrorMessage = "Veuillez saisir un Email valide")]
+            [DataType(DataType.EmailAddress)]
+            [Display(Name = "Nouvel Email")]
             public string NewEmail { get; set; }
         }
 
