@@ -30,15 +30,16 @@ namespace BoVoyageFinal.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Veuillez saisir un Mot de Passe")]
+            [StringLength(250, ErrorMessage = "Le Mot de Passe doit contenir au minimum 8 caractère, une majuscule et un caractère alphanumérique", MinimumLength = 8)]
             [DataType(DataType.Password)]
-            [Display(Name = "New password")]
+            [Display(Name = "Nouveau Mot de Passe")]
             public string NewPassword { get; set; }
 
+            [Required(ErrorMessage = "Veuillez confirmer votre Mot de Passe")]
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "Confirmez votre Nouveau Mot de Passe")]
+            [Compare("NewPassword", ErrorMessage = "Le nouveau Mot de Passe et la confirmation ne correspondent pas.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -84,7 +85,7 @@ namespace BoVoyageFinal.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your password has been set.";
+            StatusMessage = "Votre nouveau Mot de Passe a bien été enregistré.";
 
             return RedirectToPage();
         }
