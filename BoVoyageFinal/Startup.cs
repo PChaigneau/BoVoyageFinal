@@ -71,6 +71,14 @@ namespace BoVoyageFinal
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
 
+            // Pour afficher des messages de validation personnalisés
+            services.AddRazorPages()
+                    .AddMvcOptions(options =>
+            {
+            options.MaxModelValidationErrors = 50;
+            options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(_ => "Champ obligatoire. Veuillez saisir une valeur.");
+            });
+
 
         }
 

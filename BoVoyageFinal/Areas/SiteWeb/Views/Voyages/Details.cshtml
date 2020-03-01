@@ -4,16 +4,24 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details Voyage</h1>
+<div class="text-center">
+    <h1>Details Voyage</h1>
+</div>
 <hr />
-<div class="container">
+<div class="container-fluid p-4" style="background-color: #e3f2fd;">
     <div class="row">
         <div class="col-6">
             <img src="/pictures/@Model.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
         </div>
         <div class="col-6">
-            <h5>@Html.DisplayFor(model => model.IdDestinationNavigation.Nom)</h5>
+            <h5 class="text-bold">@Html.DisplayFor(model => model.IdDestinationNavigation.Nom)</h5>
             <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.IdDestinationNavigation)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.IdDestinationNavigation.Nom)
+                </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.DateDepart)
                 </dt>
@@ -51,17 +59,18 @@
                     @Html.DisplayFor(model => model.Descriptif)
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.IdDestinationNavigation)
+                    @Html.DisplayNameFor(model => model.IdDestinationNavigation.Description)
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.IdDestinationNavigation.Nom)
+                    @Html.DisplayFor(model => model.IdDestinationNavigation.Description)
+                </dd>
+                <dd class="col-sm-10">
+                    <a class="btn btn-primary" asp-action="BookIndex" asp-route-id="@Model.Id">Réserver</a> |
+                    <a class="btn btn-primary" asp-action="Index">Retour à la liste des voyages</a>
                 </dd>
             </dl>
         </div>
     </div>
 </div>
 
-<div class="container mt-3">
-    <a class="btn btn-primary" asp-action="BookIndex" asp-route-id="@Model.Id">Réserver</a> |
-    <a class="btn btn-primary" asp-action="Index">Retour à la liste des voyages</a>
-</div>
+

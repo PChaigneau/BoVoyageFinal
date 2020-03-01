@@ -2,17 +2,25 @@
     Layout = "/Areas/Identity/Pages/_Layout.cshtml";
 }
 
-<h1>Manage your account</h1>
+<div class="text-center">
+    <h1>Gestion de votre compte</h1>
+</div>
 
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
-        </div>
-        <div class="col-md-9">
-            @RenderBody()
+<div class="container-fluid p-4" style="background-color: #e3f2fd;">
+    <div class="container-fluid p-4" style="background-color: #e3f2fd;">
+        <h4>Editer les paramètres de votre compte</h4>
+        <hr />
+        <div class="row">
+            <div class="container-fluid p-4" style="background-color: #e3f2fd;">
+                <div class="col-md-4">
+                    <partial name="_ManageNav" />
+                </div>
+            </div>
+            <div class="container-fluid p-4" style="background-color: #e3f2fd;">
+                <div class="col-md-8">
+                    @RenderBody()
+                </div>
+            </div>
         </div>
     </div>
 </div>

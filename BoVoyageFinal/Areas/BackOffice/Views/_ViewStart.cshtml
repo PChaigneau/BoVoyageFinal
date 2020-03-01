@@ -3,8 +3,8 @@
 }
 
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
             <a class="navbar-brand disabled">Administrateur</a>
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                 <ul class="navbar-nav flex-grow-1">
@@ -17,6 +17,13 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="BackOffice" asp-controller="Personnes" asp-action="Index">Client</a>
                     </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="BackOffice" asp-controller="Personnes" asp-action="AddManager">Manager</a>
+                        </li>
+                    }
+
                 </ul>
             </div>
         </div>
