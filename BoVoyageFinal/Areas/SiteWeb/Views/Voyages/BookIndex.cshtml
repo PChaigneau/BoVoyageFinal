@@ -54,6 +54,41 @@
                     @Html.DisplayFor(model => model.Voyage.IdDestinationNavigation.Nom)
                 </dd>
             </dl>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col"> 
+            <h4>Participants</h4>
+            <hr>
+            <!-- générer liste en parcourant les voyageurs du Model, à commencer par le client qui devient automatiquement voyageur-->
+            <ul>
+                <li>
+                    NomClient   Prénom Client   E-mailClient
+                </li>
+            </ul>            
+            <button data-toggle="modal" data-target="#exampleModal" class="btn-primary ml-5">Ajouter un participant</button>    
+        </div>
+        <!-- Afficher prix total et bouton payer-->
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ajouterVoyageurModal" tabindex="-1" role="dialog" aria-labelledby="ajouterVoyageurModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ajouterVoyageurModalLabel">Ajouter un participant</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <partial name="_CreerVoyageur" model="@Model.Voyageur" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <button type="submit" form="ajouterVoyageur" class="btn btn-primary">Enregistrer</button>
+            </div>
         </div>
     </div>
 </div>

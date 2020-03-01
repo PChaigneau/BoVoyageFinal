@@ -72,10 +72,25 @@ namespace BoVoyageFinal.Areas.SiteWeb.Controllers
 
         public async Task<IActionResult> BookIndex(int id)
         {
-
+            //Chargement de la formule selectionnée
             Voyage voyage = await _context.Voyage.Include(v => v.IdDestinationNavigation).SingleOrDefaultAsync(v => v.Id == id);
+            //Récupération de l'email de l'utilisateur loggé
             var userMail = _userManager.GetUserName(HttpContext.User);
-            //tester si le mail est présent dasn une ligne de Personne et si oui récupérer l'ID
+            //tester si le mail est présent dans une ligne de Personne et si oui  : récupérer l'id correspondant, créer un Voyageur
+            var user = await _context.Personne.SingleOrDefaultAsync(p=>p.Email==userMail).AsNoTracking();
+            int userId;
+            int userClientId;
+            int userVoyageurId;
+            if(user != null)
+            {
+                userId = user.Id;
+                userClientId = user.Client.Id;
+                //créer un Voyageur
+            }
+
+            //initialiser une liset de participants commençant par le client voyageur. Requiert d'éditer le ResaViewModel pour qu'il 
+            // corresponde au type Voyage + liste de voyageurs.
+
             if (voyage == null)
             {
                 return NotFound();
