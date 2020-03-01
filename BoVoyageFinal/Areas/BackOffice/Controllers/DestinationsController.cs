@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using BoVoyageFinal.Models;
 using Microsoft.AspNetCore.Authorization;
 
+
+
 namespace BoVoyageFinal.Areas.BackOffice.Controllers
 {
     //[Authorize(Roles = "admin, manager")]
@@ -52,7 +54,11 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
         public IActionResult Create()
         {
             //ViewData["IdParente"] = new SelectList(_context.Destination, "Id", "Nom");
-            ViewData["IdParente"] = new SelectList(_context.Destination.Where(d => d.Niveau < 3).OrderBy(d => d.Nom), "Id", "Nom");
+            //ViewData["IdParente"] = new SelectList(_context.Destination.Where(d => d.Niveau < 3).OrderBy(d => d.Nom), "Id", "Nom");
+
+            // Essai
+            var destinationParente = _context.Destination.Where(d => d.Niveau < 3).OrderBy(d => d.Nom).AsNoTracking().ToList();
+            ViewData["IdParente"] = new SelectList(destinationParente, "Id", "Nom");
 
             return View();
         }
@@ -71,8 +77,14 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            // ViewData["IdParente"] = new SelectList(_context.Destination, "Id", "Nom", destination.IdParente);
             // L'objectif de la requête ci-dessous serait de n'afficher que les IdParente de destinations de niveau inférieur à 3, donc pas les régions
-            ViewData["IdParente"] = new SelectList(_context.Destination.Where(d => d.Niveau < 3).OrderBy(d => d.Nom), "Id", "Nom", destination.IdParente);
+            //ViewData["IdParente"] = new SelectList(_context.Destination.Where(d => d.Niveau < 3).OrderBy(d => d.Nom), "Id", "Nom", destination.IdParente);
+
+            // Essai
+            var destinationParente = await _context.Destination.Where(d => d.Niveau < 3).OrderBy(d => d.Nom).AsNoTracking().ToListAsync();
+            ViewData["IdParente"] = new SelectList(destinationParente, "Id", "Nom", destination.IdParente);
+
             return View(destination);
         }
 
@@ -125,7 +137,8 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdParente"] = new SelectList(_context.Destination, "Id", "Nom", destination.IdParente);
+
+            ViewData["IdParente"] = new SelectList(_context.Destination.AsNoTracking(), "Id", "Nom", destination.IdParente);
             return View(destination);
         }
 

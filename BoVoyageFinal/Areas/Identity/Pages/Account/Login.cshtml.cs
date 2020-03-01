@@ -42,15 +42,19 @@ namespace BoVoyageFinal.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Veuillez saisir un Email")]
+            [RegularExpression("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$", ErrorMessage = "Veuillez saisir un Email valide")]
+            [Display(Name = "Email")]
+            [DataType(DataType.EmailAddress)]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Veuillez saisir votre Mot de Passe")]
+            [StringLength(250, ErrorMessage = "Le Mot de Passe doit contenir au minimum 8 caractères", MinimumLength = 8)]
             [DataType(DataType.Password)]
+            [Display(Name = "Mot de Passe")]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Se souvenir de moi?")]
             public bool RememberMe { get; set; }
         }
 

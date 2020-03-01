@@ -21,9 +21,9 @@ namespace BoVoyageFinal.Models
         public int IdDestination { get; set; }
 
         [Required(ErrorMessage = "Champ obligatoire. Veuillez sélectionner une Date de départ.")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date de départ")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateDepart { get; set; }
 
         [Required(ErrorMessage = "Champ obligatoire. Veuillez sélectionner une Date de retour.")]
@@ -46,11 +46,11 @@ namespace BoVoyageFinal.Models
         [DisplayFormat(DataFormatString = "{0:P0}")]
         public decimal Reduction { get; set; }
 
-        [Required(ErrorMessage = "Champ obligatoire. Veuillez renseigner une description comprise entre 20 et 1500 caractères."), MinLength(20), StringLength(1500)]]
+        [Required(ErrorMessage = "Champ obligatoire. Veuillez renseigner une description comprise entre 20 et 1500 caractères."), StringLength(1500, MinimumLength=20)]
         [Display(Name = "Descriptif")]
         public string Descriptif { get; set; }
 
-        
+        [Display(Name = "Destination")]
         public virtual Destination IdDestinationNavigation { get; set; }
         public virtual ICollection<Dossierresa> Dossierresa { get; set; }
         public virtual ICollection<Voyageur> Voyageur { get; set; }
@@ -71,8 +71,6 @@ namespace BoVoyageFinal.Models
                 yield return new ValidationResult("La date de départ doit être inférieure à la date de retour");
             }
 
-
-            throw new NotImplementedException();
         }
     }
 }
