@@ -38,25 +38,22 @@
     <div class="row justify-content-center">
         @foreach (var item in Model.Top5Prix)
         {
-        <div class="card col-2 mr-3 ml-3 mt-4 p-2 text-center" style="width: 18rem;">
-           
-            
-            @{ 
-                string img = "/pictures/@item.IdDestinationNavigation.Photo.First().NomFichier";
-                <img src="img" class="card-img-top" alt="default">
-                if (img==null) {
-                 img = "/pictures/default.jpg";
-}
-            }
-            <div class="card-body">
+        <div class="card col-lg-5-md-3-xs-2 mr-3 ml-3 mt-4 p-2 text-center" style="width: 18rem;">
+    
+                <img src="/pictures/@item.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
+                <div class="card-body" style="position: relative;">
 
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.IdDestinationNavigation.Nom)</h5>
-                <p class="card-text">@Html.DisplayFor(modelItem => item.Descriptif)</p>
-                <p class="card-text">@Html.DisplayNameFor(model => item.DateDepart): @Html.DisplayFor(modelItem => item.DateDepart)</p>
-                <p class="card-text">@Html.DisplayNameFor(model => item.DateRetour): @Html.DisplayFor(modelItem => item.DateRetour)</p>
-                <p class="card-text">@Html.DisplayNameFor(model => item.PrixHt): @Html.DisplayFor(modelItem => item.PrixHt) (-@Html.DisplayFor(modelItem => item.Reduction))</p>
-                <a class="btn btn-primary" asp-area="SiteWeb" asp-controller="Voyages" asp-action="Details" asp-route-id="@item.Id">Details</a>
-            </div>
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.IdDestinationNavigation.Nom)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Descriptif)</p>
+                    <p class="card-text">@Html.DisplayNameFor(model => item.DateDepart): @Html.DisplayFor(modelItem => item.DateDepart)</p>
+                    <p class="card-text">@Html.DisplayNameFor(model => item.DateRetour): @Html.DisplayFor(modelItem => item.DateRetour)</p>
+                    <p class="card-text">@Html.DisplayNameFor(model => item.PrixHt): @Html.DisplayFor(modelItem => item.PrixHt) (-@Html.DisplayFor(modelItem => item.Reduction))</p>
+                    <br />
+                    <br />
+                    <br />
+                    <a class="btn btn-primary" style="position: absolute ; bottom: 0; margin-left: -35px;" asp-area="SiteWeb" asp-controller="Voyages" asp-action="Details" asp-route-id="@item.Id">Details</a>
+
+                </div>
         </div>
         }
     </div>
@@ -67,19 +64,21 @@
     <div class="row justify-content-center">
         @foreach (var item in Model.Top5DateDepart)
         {
-            <div class="card col-2 mr-3 ml-3 mt-4 p-2 text-center" style="width: 18rem;">
+            <div class="card col-lg-5-md-3-xs-2 mr-3 ml-3 mt-4 p-2 text-center" style="width: 18rem;">
                 <img src="/pictures/@item.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
-                <div class="card-body">
+                <div class="card-body" style="position: relative;">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.IdDestinationNavigation.Nom)</h5>
                     <p class="card-text">@Html.DisplayFor(modelItem => item.Descriptif)</p>
                     <p class="card-text">@Html.DisplayNameFor(model => item.DateDepart): @Html.DisplayFor(modelItem => item.DateDepart)</p>
                     <p class="card-text">@Html.DisplayNameFor(model => item.DateRetour): @Html.DisplayFor(modelItem => item.DateRetour)</p>
                     <p class="card-text">@Html.DisplayNameFor(model => item.PrixHt): @Html.DisplayFor(modelItem => item.PrixHt) (-@Html.DisplayFor(modelItem => item.Reduction))</p>
-                    <a class="btn btn-primary" asp-area="SiteWeb" asp-controller="Voyages" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <br />
+                    <br />
+                    <br />
+                    <a class="btn btn-primary" style="position: absolute ; bottom: 0; margin-left: -35px;" asp-area="SiteWeb" asp-controller="Voyages" asp-action="Details" asp-route-id="@item.Id">Details</a>
                 </div>
             </div>
         }
     </div>
 </div>
-
 
