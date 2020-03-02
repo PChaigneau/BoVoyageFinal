@@ -39,7 +39,15 @@
         @foreach (var item in Model.Top5Prix)
         {
             <div class="card col-2 mr-3 ml-3 mt-4 p-2 text-center" style="width: 18rem;">
-                <img src="/pictures/@item.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
+                @if (@item.IdDestinationNavigation.Photo.Any())
+                {
+                    <img src="/pictures/@item.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
+                }
+                else
+                {
+                    <img src="/pictures/Default_Photo.jpg" class="card-img-top" alt="...">
+                }
+                
                 <div class="card-body">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.IdDestinationNavigation.Nom)</h5>
                     <p class="card-text">@Html.DisplayFor(modelItem => item.Descriptif)</p>
@@ -59,7 +67,15 @@
         @foreach (var item in Model.Top5DateDepart)
         {
             <div class="card col-2 mr-3 ml-3 mt-4 p-2 text-center" style="width: 18rem;">
-                <img src="/pictures/@item.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
+
+                @if (@item.IdDestinationNavigation.Photo.Any())
+                {
+                    <img src="/pictures/@item.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
+                }
+                else
+                {
+                    <img src="/pictures/Default_Photo.jpg" class="card-img-top" alt="...">
+                }
                 <div class="card-body">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.IdDestinationNavigation.Nom)</h5>
                     <p class="card-text">@Html.DisplayFor(modelItem => item.Descriptif)</p>
@@ -73,3 +89,27 @@
     </div>
 </div>
 
+    <div class="container-fluid mt-3 mb-3 p-2" style="background-color: #e3f2fd;">
+        <h3>Top 5 des voyages des destinations dont les pays sont les plus représentés</h3>
+        <div class="row justify-content-between">
+            @foreach (var item in Model.Top5Destination)
+            {
+            <div class="card col-2 mr-3 ml-3 mt-4 text-center">
+                @if (@item.Photo.Any())
+                {
+                    <img src="/pictures/@item.Photo.First().NomFichier" class="card-img-top" alt="...">
+                }
+                else
+                {
+                    <img src="/pictures/Default_Photo.jpg" class="card-img-top" alt="...">
+                }
+                
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nom)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    <a class="btn btn-primary" asp-area="SiteWeb" asp-controller="Voyages" asp-route-Destination="@item.Nom">@item.Nom</a>
+                </div>
+            </div>
+                }
+            </div>
+        </div>

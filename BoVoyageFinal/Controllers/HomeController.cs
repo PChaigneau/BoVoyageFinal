@@ -28,8 +28,17 @@ namespace BoVoyageFinal.Controllers
             vm.Top5Prix = _context.Voyage.Include(v => v.IdDestinationNavigation).ThenInclude(d => d.Photo).OrderBy(v => v.PrixHt).Take(5).ToList();
             vm.Top5DateDepart = _context.Voyage.Include(v => v.IdDestinationNavigation).ThenInclude(d => d.Photo).OrderBy(v => v.DateDepart).Take(5).ToList();
             vm.Top5Destination = _context.Destination.Include(d => d.Photo).OrderBy(v => v.Nom).Take(5).ToList();
-            return View(vm);
+            
+            /*
+            var destVoyage = _context.Destination.Include(d => d.Voyage);
+            if (destVoyage != null)
+            {
+                vm.Top5Destination = _context.Destination.Where(d => d.Voyage != null).Include(d => d.Photo).OrderBy(v => v.Nom).Take(5).ToList();
+            }
+           */
+            return View(vm);  
         }
+
         [AllowAnonymous]
         public IActionResult Privacy()
         {
