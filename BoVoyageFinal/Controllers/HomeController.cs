@@ -54,5 +54,17 @@ namespace BoVoyageFinal.Controllers
 
             return View();
         }
+        public IActionResult Addrole()
+        {
+
+
+            return View();
+        }
+        public IActionResult ListRoles()
+        {
+
+
+            return View();
+        }
     }
 }

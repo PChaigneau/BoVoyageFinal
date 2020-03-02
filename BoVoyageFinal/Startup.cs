@@ -36,23 +36,25 @@ namespace BoVoyageFinal
             services.AddDbContext<BoVoyageContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("BoVoyageConnect")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<IdentityRole>()
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
 
             services.Configure<IdentityOptions>(options =>
             {
-                // Password settings
-                //options.Password.RequireDigit = true;
-                //options.Password.RequiredLength = 8;
-                //options.Password.RequireNonAlphanumeric = true;
-                //options.Password.RequireUppercase = true;
-                //options.Password.RequireLowercase = true;
-                //options.Password.RequiredUniqueChars = 6;
+                //Password settings
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequiredUniqueChars = 6;
 
-                //P@ssw0rd
 
                 // Lockout settings
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
@@ -105,6 +107,7 @@ namespace BoVoyageFinal
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+
             });
         }
     }
