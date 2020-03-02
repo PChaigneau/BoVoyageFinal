@@ -11,7 +11,14 @@
 <div class="container-fluid p-4" style="background-color: #e3f2fd;">
     <div class="row">
         <div class="col-6">
-            <img src="/pictures/@Model.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
+            @if (Model.IdDestinationNavigation.Photo.Any())
+            {
+                <img src="/pictures/@Model.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
+            }
+            else
+            {
+                <img src="/pictures/Default_Photo.jpg" class="card-img-top" alt="...">
+            }
         </div>
         <div class="col-6">
             <h5 class="text-bold">@Html.DisplayFor(model => model.IdDestinationNavigation.Nom)</h5>
