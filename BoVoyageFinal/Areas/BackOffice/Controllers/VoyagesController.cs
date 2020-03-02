@@ -10,9 +10,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BoVoyageFinal.Areas.BackOffice.Controllers
 {
-    [AllowAnonymous]
+    //[AllowAnonymous]
     [Area("BackOffice")]
-    // [Authorize(Roles = "admin, manager")]
+    [Authorize(Roles = "Admin, Manager")]
     public class VoyagesController : Controller
     {
         private readonly BoVoyageContext _context;
@@ -69,7 +69,6 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
             ViewData["IdDestination"] = new SelectList(_context.Destination, "Id", "Nom", voyage.IdDestination);
             return View(voyage);
         }

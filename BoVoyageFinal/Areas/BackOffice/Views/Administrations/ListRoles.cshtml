@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<IdentityRole>
+@{
+    ViewBag.Title = "TOUS LES ROLES";
+}
+
+    <h1>TOUS LES ROLES</h1>
+
+@if (Model.Any())
+    //Pour chaque Model ( Role) Nous affichons son Id et son nom
+{
+    @foreach (var role in Model)
+    {
+<div class="card mb-3">
+    <div class="card-header">
+        Role Id : @role.Id
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@role.Name</h5>
+    </div>
+
+    <div class="card-footer">
+       <a  class=" btn btn-primary" asp-area="BackOffice"  asp-action="EditRole" 
+          asp-controller="Administrations"  
+          asp-route-id="@role.Id">
+        Editer
+       </a>
+    </div>
+</div>
+
+
+    }
+}
+else
+{
+    <h1> Aucun roles trouvées</h1>
+}

@@ -83,8 +83,8 @@ namespace BoVoyageFinal.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("L'utilisateur a créé un nouveau compte avec Mot de Passe.");
 
-                    // On assigne le rôle Member par défaut aux nouveaux utilisateurs enregistrés
-                    await _userManager.AddToRoleAsync(user, "Member");
+                    //On assigne le rôle Member par défaut aux nouveaux utilisateurs enregistrés
+                   await _userManager.AddToRoleAsync(user, "Member");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
