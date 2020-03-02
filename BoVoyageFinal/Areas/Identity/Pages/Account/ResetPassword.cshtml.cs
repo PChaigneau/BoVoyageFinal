@@ -27,18 +27,21 @@ namespace BoVoyageFinal.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Veuillez saisir un Email")]
             [EmailAddress]
+            [Display(Name = "Email")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Veuillez saisir un Mot de Passe")]
+            [StringLength(250, ErrorMessage = "Le Mot de Passe doit contenir au minimum 8 caractères.", MinimumLength = 8)]
             [DataType(DataType.Password)]
+            [Display(Name = "Mot de Passe")]
             public string Password { get; set; }
 
+            [Required(ErrorMessage = "Veuillez confirmer votre Mot de Passe")]
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Confirmez Mot de Passe")]
+            [Compare("Password", ErrorMessage = "La confirmation ne correspond pas au mot de passe renseigné.")]
             public string ConfirmPassword { get; set; }
 
             public string Code { get; set; }
