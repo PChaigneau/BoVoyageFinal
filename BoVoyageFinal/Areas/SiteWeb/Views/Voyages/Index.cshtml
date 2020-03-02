@@ -32,7 +32,7 @@
 </div>
 
 <div class="container-fluid mt-3 mb-3 p-2" style="background-color: #e3f2fd;">
-    <div class="row justify-content-between">
+    <div class="row justify-content-center">
         @foreach (var item in Model)
         {
             <div class="card col-lg-5-md-3-xs-2 mr-3 ml-3 mt-4 p-2 text-center" style="width: 18rem;">
@@ -43,7 +43,7 @@
                     <p class="card-text">@Html.DisplayNameFor(model => model.DateDepart): @Html.DisplayFor(modelItem => item.DateDepart)</p>
                     <p class="card-text">@Html.DisplayNameFor(model => model.DateRetour): @Html.DisplayFor(modelItem => item.DateRetour)</p>
                     <p class="card-text">@Html.DisplayNameFor(model => model.PrixHt): @Html.DisplayFor(modelItem => item.PrixHt) (-@Html.DisplayFor(modelItem => item.Reduction))</p>
-                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id" style="position: absolute; bottom: 0; margin-left: -35px;">Details</a>
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id" style="position: absolute ; bottom: 0; margin-left: -35px;">Details</a>
                 </div>
             </div>
         }
