@@ -8,9 +8,19 @@ namespace BoVoyageFinal.Models
 {
     public class ResaViewModel
     {       
-        public Voyage Voyage { get; set; }
+        
+        public int VoyageId { get; set; }
 
-        public List<Voyageur> Participants { get; set; }
+        public string NomDestination { get; set; }
+
+        public List<Personne> Participants { get; set; }
+
+        public Personne CurrentPerson { get; set; }
+
+        public ResaViewModel()
+        {
+            Participants = new List<Personne>();
+        }
 
     }
 }

@@ -7,81 +7,47 @@
 
 @section header
 {
-    <h4>Récapitulatif formule n°@Html.DisplayFor(model => model.Voyage.Id)</h4>
+    <h4>Participants au voyage vers : @Model.NomDestination</h4>
 }
-
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <dl class="row">                
-                <dt class="col-sm-2">
-                    Destination :
-                </dt>                
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Voyage.IdDestinationNavigation.Nom)
-                </dd>                
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Voyage.DateDepart)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Voyage.DateDepart)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Voyage.DateRetour)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Voyage.DateRetour)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Voyage.PlacesDispo)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Voyage.PlacesDispo)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Voyage.PrixHt)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Voyage.PrixHt)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Voyage.Reduction)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Voyage.Reduction)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Voyage.Descriptif)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Voyage.Descriptif)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Voyage.IdDestinationNavigation)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Voyage.IdDestinationNavigation.Nom)
-                </dd>
-            </dl>
-        </div>
-    </div>
-    <hr />
-    <div class="row">
-        <div class="col">
-            <h4>Participants</h4>
-            <hr>
-            <!-- générer liste en parcourant les voyageurs du Model, contenant un Voyageur null  par défaut-->
-            <ul>
+<div class="row">
+    <div class="col">
+        <!-- générer liste en parcourant les participants du Model-->
+        <ul>
+            <!--Si aucun participant enregistré, affichage d'un message générique-->
+            @if (!Model.Participants.Any())
+            {
                 <li>
+                    Il n'y a encore aucun participant enregistré pour ce voyage.
                 </li>
-            </ul>
-            <button data-toggle="modal" data-target="ajouterVoyageurModal" class="btn-primary ml-5">Ajouter un participant</button>
-        </div>
-        <!-- Afficher prix total et bouton payer-->
+            }
+            else
+            {
+                @foreach (var participant in Model.Participants)
+                {
+                    <li>
+                        @participant.Nom  | @participant.Prenom | @participant.Email
+                    </li>
+                }
+
+            }
+        </ul>
+        <button data-toggle="modal" data-target="#ajouterVoyageurModal" class="btn-primary ml-5">Ajouter un participant</button>
+        <hr />
+        <p>Nombre de participants : <span>@ViewBag.Nbr</span></p>
+        <hr />
+        <p>Prix Total Hors Taxes : <span>@ViewBag.PrixTHT €</span></p>
+        <hr />
+        <p>Application de la réduction à @ViewBag.Reduction % : <span>@ViewBag.PrixTHTr €</span></p>
+        <hr />
+        <p>Montant TVA : <span>@ViewBag.TVA €</span></p>
+
+        <p>Prix TTC : <span>@ViewBag.PrixTTC €</span></p>
     </div>
+    <!-- Afficher prix total et bouton payer-->
 </div>
 
-<!-- Modal -->
+
+<!-- Vue modale permettant d'ajouter un participant-->
 <div class="modal fade" id="ajouterVoyageurModal" tabindex="-1" role="dialog" aria-labelledby="ajouterVoyageurModalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -92,11 +58,58 @@
                 </button>
             </div>
             <div class="modal-body">
-                <partial name="_AjouterVoyageur" model="@Model.Participants.First()" />
+                <form class="text-center border border-light p-5" action="BookIndex"  id="ajouterVoyageur" method="get">
+
+                    <p class="h4 mb-4">Ajouter un participant</p>
+
+                    <div class="form-row mb-4">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="col">
+                            <!-- Prénom -->
+                            <input asp-for="@Model.CurrentPerson.Prenom" id="defaultRegisterFormFirstName" class="form-control" placeholder="Prénom">
+                            <span asp-validation-for="@Model.CurrentPerson.Prenom" class="text-danger"></span>
+                        </div>
+                        <div class="col">
+                            <!-- Nom -->
+                            <input asp-for="@Model.CurrentPerson.Nom" id="defaultRegisterFormLastName" class="form-control" placeholder="Nom">
+                            <span asp-validation-for="@Model.CurrentPerson.Nom" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <!-- Civilité -->
+                            <label asp-for="@Model.CurrentPerson.Civilite" class="control-label"></label>
+                            <select asp-for="@Model.CurrentPerson.Civilite" class="form-control" id="exampleFormControlCivilite">
+                                <option value=""></option>
+                                <option value="H">Homme</option>
+                                <option value="F">Femme</option>
+                            </select>
+                            <span asp-validation-for="@Model.CurrentPerson.Civilite" class="text-danger"></span>
+                        </div>
+                        <div class="col">
+                            <!-- Date de naissance -->
+                            <label asp-for="@Model.CurrentPerson.Datenaissance" class="control-label"></label>
+                            <input asp-for="@Model.CurrentPerson.Datenaissance" id="defaultRegisterFormBirthdate" class="form-control">
+                            <span asp-validation-for="@Model.CurrentPerson.Datenaissance" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- E-mail -->
+                    <input asp-for="@Model.CurrentPerson.Email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+                    <span asp-validation-for="@Model.CurrentPerson.Email" class="text-danger"></span>
+
+                    <!-- Numéro de téléphone -->
+                    <input asp-for="@Model.CurrentPerson.Telephone" id="defaultRegisterPhonePassword" class="form-control" placeholder="Numéro de téléphone" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+                    <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+                        uniquement utilisé pour vous contacter en cas d'urgence
+                    </small>
+                    <span asp-validation-for="@Model.CurrentPerson.Telephone" class="text-danger"></span>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                <button type="submit" form="ajouterVoyageur" class="btn btn-primary">Enregistrer</button>
+                <button type="submit" form="ajouterVoyageur" class="btn btn-primary" asp-route-Id="@Model.VoyageId">Ajouter</button>
             </div>
         </div>
     </div>

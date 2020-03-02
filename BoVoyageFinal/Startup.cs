@@ -45,6 +45,19 @@ namespace BoVoyageFinal
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            // Mise en place des sessions au moyen d'un cache mémoire
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                // Définit la durée maxi d'inactivité de la session
+                options.IdleTimeout = TimeSpan.FromMinutes(5);
+
+                // Active le cookie de session et le rend obligatoire
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+
             services.Configure<IdentityOptions>(options =>
             {
                 //Password settings
@@ -100,6 +113,9 @@ namespace BoVoyageFinal
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            // Utilisation des sessions
+            app.UseSession();
 
             app.UseRouting();
 
