@@ -16,6 +16,7 @@ namespace BoVoyageFinal.Areas.SiteWeb.Controllers
     {
         private readonly BoVoyageContext _context;
         private readonly UserManager<IdentityUser> _userManager;
+        const string SessionKeyModel = "_model";
 
         public VoyagesController(BoVoyageContext context, UserManager<IdentityUser> userManager)
         {
@@ -70,22 +71,50 @@ namespace BoVoyageFinal.Areas.SiteWeb.Controllers
             return View(voyages);
         }
 
-        public async Task<IActionResult> BookIndex(int id)
+        public async Task<IActionResult> BookIndex(int id, ResaViewModel currentResa)
         {
 
+            //Récupération du voyage avec sa destiantion à partir de l'id :
             Voyage voyage = await _context.Voyage.Include(v => v.IdDestinationNavigation).SingleOrDefaultAsync(v => v.Id == id);
-            var userMail = _userManager.GetUserName(HttpContext.User);
-            //tester si le mail est présent dasn une ligne de Personne et si oui récupérer l'ID
-            if (voyage == null)
+
+            //On instancie un modèle pour vue avec l'objet éventuellement mémorisé pour cette session
+            ResaViewModel resa = HttpContext.Session.Get<ResaViewModel>("_model");
+
+            //Si aucun objet n'était mémorisé pour cette session, on initialise le modèle pour vue en lui affectant la formule selectionnée par l'utilisateur
+            if (resa == null)
             {
-                return NotFound();
+                resa = new ResaViewModel();
+                resa.VoyageId = id;
+                resa.NomDestination = voyage.IdDestinationNavigation.Nom;
             }
 
-            ResaViewModel resa = new ResaViewModel();
-            resa.Voyage = voyage;
-            //resa.Voyageur =;
 
+            //On affecte un éventuel participant enregistré via la vue modale à la liste des participants
+            if (currentResa.CurrentPerson != null)
+                resa.Participants.Add(currentResa.CurrentPerson);
 
+            //Mémorisation du modèle pour la session en cours
+            HttpContext.Session.Set("_model", resa);
+
+            //Calcul du prix total en fonction du nombre de participants et du montant du taux de réduction
+            int nbParticipants = resa.Participants.Count();
+            decimal prixTotalHTr = 0M;
+            decimal prixTotalHT = nbParticipants * voyage.PrixHt;
+            if (voyage.Reduction!=0)
+            {
+             prixTotalHTr = nbParticipants * voyage.PrixHt * (1 - voyage.Reduction);
+            }
+            else
+            {
+                prixTotalHTr = nbParticipants * voyage.PrixHt;
+            }
+            decimal prixTTC = prixTotalHTr*1.2M;
+            ViewBag.Nbr = nbParticipants;
+            ViewBag.PrixTHT = Math.Round(prixTotalHT,2);
+            ViewBag.Reduction = (int)(voyage.Reduction*100);
+            ViewBag.PrixTHTr = Math.Round(prixTotalHTr,2) ;
+            ViewBag.TVA = Math.Round(prixTTC - prixTotalHTr, 2);
+            ViewBag.PrixTTC = Math.Round(prixTTC, 2);
 
             return View(resa);
         }
@@ -108,5 +137,7 @@ namespace BoVoyageFinal.Areas.SiteWeb.Controllers
 
             return View(voyage);
         }
+
+
     }
 }

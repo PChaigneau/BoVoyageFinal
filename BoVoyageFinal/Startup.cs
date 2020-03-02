@@ -36,23 +36,38 @@ namespace BoVoyageFinal
             services.AddDbContext<BoVoyageContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("BoVoyageConnect")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<IdentityRole>()
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            // Mise en place des sessions au moyen d'un cache mémoire
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                // Définit la durée maxi d'inactivité de la session
+                options.IdleTimeout = TimeSpan.FromMinutes(5);
+
+                // Active le cookie de session et le rend obligatoire
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+
             services.Configure<IdentityOptions>(options =>
             {
-                // Password settings
-                //options.Password.RequireDigit = true;
-                //options.Password.RequiredLength = 8;
-                //options.Password.RequireNonAlphanumeric = true;
-                //options.Password.RequireUppercase = true;
-                //options.Password.RequireLowercase = true;
-                //options.Password.RequiredUniqueChars = 6;
+                //Password settings
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequiredUniqueChars = 6;
 
-                //P@ssw0rd
 
                 // Lockout settings
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
@@ -99,6 +114,9 @@ namespace BoVoyageFinal
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            // Utilisation des sessions
+            app.UseSession();
+
             app.UseRouting();
 
             app.UseAuthentication();
@@ -113,6 +131,7 @@ namespace BoVoyageFinal
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+
             });
         }
     }

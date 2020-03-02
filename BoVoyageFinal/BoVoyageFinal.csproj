@@ -5,6 +5,11 @@
     <UserSecretsId>aspnet-BoVoyageFinal-DD85E0C6-A707-4DEC-98D8-ADB82DCDB883</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="BDD\BoVoyage.ldf" />
+    <None Remove="BDD\BoVoyage.mdf" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.0" />
@@ -17,12 +22,15 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
+    <PackageReference Include="xunit.extensibility.execution" Version="2.4.1" />
   </ItemGroup>
 
 
   <ItemGroup>
     <Folder Include="Areas\BackOffice\Data\" />
     <Folder Include="Areas\BackOffice\Models\" />
+    <Folder Include="Areas\Identity\Models\" />
     <Folder Include="Areas\SiteWeb\Data\" />
     <Folder Include="wwwroot\pictures\" />
   </ItemGroup>
