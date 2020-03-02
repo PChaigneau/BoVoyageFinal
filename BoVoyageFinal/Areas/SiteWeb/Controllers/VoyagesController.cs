@@ -74,21 +74,24 @@ namespace BoVoyageFinal.Areas.SiteWeb.Controllers
         {
             //Chargement de la formule selectionnée
             Voyage voyage = await _context.Voyage.Include(v => v.IdDestinationNavigation).SingleOrDefaultAsync(v => v.Id == id);
-            //Récupération de l'email de l'utilisateur loggé
-            var userMail = _userManager.GetUserName(HttpContext.User);
-            //tester si le mail est présent dans une ligne de Personne et si oui  : récupérer l'id correspondant, créer un Voyageur
-            var user = await _context.Personne.AsNoTracking().SingleOrDefaultAsync(p=>p.Email==userMail);
-            int userId;
-            int userClientId;
-            int userVoyageurId;
-            if(user != null)
-            {
-                userId = user.Id;
-                userClientId = user.Client.Id;
-                //créer un Voyageur
-            }
+            ////Récupération de l'email de l'utilisateur loggé
+            //var userMail = _userManager.GetUserName(HttpContext.User);
 
-            //initialiser une liset de participants commençant par le client voyageur. Requiert d'éditer le ResaViewModel pour qu'il 
+
+
+            ////Récupération de l'entité Personne associée à cet email
+            //var user = await _context.Personne.AsNoTracking().SingleOrDefaultAsync(p=>p.Email==userMail);
+            
+
+            ////Initialisation d'un Voyageur correspondant à cette Personne
+            //Voyageur voyageur = new Voyageur();
+            //voyageur.Id = user.Id;
+            //voyageur.Idvoyage = voyage.Id;
+            ////Initialisation de la liste des participants au voyage
+            //List<Voyageur> participants = new List<Voyageur> { voyageur };  
+        
+
+            //initialiser une liste de participants commençant par le client voyageur. Requiert d'éditer le ResaViewModel pour qu'il 
             // corresponde au type Voyage + liste de voyageurs.
 
             if (voyage == null)

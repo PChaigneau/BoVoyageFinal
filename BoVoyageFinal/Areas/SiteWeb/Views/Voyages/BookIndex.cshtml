@@ -2,15 +2,24 @@
 
 @{
     ViewData["Title"] = "BookIndex";
+    Layout = "_BookLayout";
 }
 
-<h1>Récapitulatif formule n°@Html.DisplayFor(model => model.Voyage.Id)</h1>
+@section header
+{
+    <h4>Récapitulatif formule n°@Html.DisplayFor(model => model.Voyage.Id)</h4>
+}
 
 <div class="container">
     <div class="row">
-        <div class="col-6">
-            <h5>@Html.DisplayFor(model => model.Voyage.IdDestinationNavigation.Nom)</h5>
-            <dl class="row">
+        <div class="col">
+            <dl class="row">                
+                <dt class="col-sm-2">
+                    Destination :
+                </dt>                
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Voyage.IdDestinationNavigation.Nom)
+                </dd>                
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Voyage.DateDepart)
                 </dt>
@@ -54,19 +63,19 @@
                     @Html.DisplayFor(model => model.Voyage.IdDestinationNavigation.Nom)
                 </dd>
             </dl>
-        </div>        
+        </div>
     </div>
+    <hr />
     <div class="row">
-        <div class="col"> 
+        <div class="col">
             <h4>Participants</h4>
             <hr>
-            <!-- générer liste en parcourant les voyageurs du Model, à commencer par le client qui devient automatiquement voyageur-->
+            <!-- générer liste en parcourant les voyageurs du Model, contenant un Voyageur null  par défaut-->
             <ul>
                 <li>
-                    NomClient   Prénom Client   E-mailClient
                 </li>
-            </ul>            
-            <button data-toggle="modal" data-target="#exampleModal" class="btn-primary ml-5">Ajouter un participant</button>    
+            </ul>
+            <button data-toggle="modal" data-target="ajouterVoyageurModal" class="btn-primary ml-5">Ajouter un participant</button>
         </div>
         <!-- Afficher prix total et bouton payer-->
     </div>
@@ -83,7 +92,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <partial name="_CreerVoyageur" model="@Model.Voyageur" />
+                <partial name="_AjouterVoyageur" model="@Model.Participants.First()" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>

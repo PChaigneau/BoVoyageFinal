@@ -10,7 +10,7 @@ namespace BoVoyageFinal.Models
     {       
         public Voyage Voyage { get; set; }
 
-        public Voyageur Voyageur { get; set; }
+        public List<Voyageur> Participants { get; set; }
 
     }
 }
