@@ -61,7 +61,7 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdDestination,DateDepart,DateRetour,PlacesDispo,PrixHt,Reduction,Descriptif")] Voyage voyage)
+        public async Task<IActionResult> Create([Bind("IdDestination,DateDepart,DateRetour,PlacesDispo,PrixHt,Reduction,Descriptif")] Voyage voyage)
         {
             if (ModelState.IsValid)
             {

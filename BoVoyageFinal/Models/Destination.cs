@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BoVoyageFinal.Models
 {
@@ -49,16 +51,16 @@ namespace BoVoyageFinal.Models
             // On fait les contrôles
             // NB/ On utilise pas la vue locale, car le DbSet est instancié à chaque appel du contrôleur et donc pas chargé quand on arrive sur la vue de création d'un aliment
 
-            var res = ctx.Destination.FirstOrDefaultAsync(d => d.Id == destination.Id);
+            var res =  ctx.Destination.Find( destination.Id);
             if (res != null)
             {
-                yield return new ValidationResult("L'Id de Destination éxiste déjà");
+                yield return new ValidationResult("L'Id de Destination éxiste déjà", new string[] { "Id" });
             }
 
-            var nom = ctx.Destination.FirstOrDefaultAsync(d => d.Nom == destination.Nom);
-            if (nom != null)
+            res =  ctx.Destination.FirstOrDefault(d => d.Nom == destination.Nom);
+            if (res != null)
             {
-                yield return new ValidationResult("Ce nom de Destination éxiste déjà");
+                yield return new ValidationResult("Ce nom de Destination éxiste déjà", new string[] { "Nom" });
             }
         }
     }

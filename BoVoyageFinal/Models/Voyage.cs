@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace BoVoyageFinal.Models
 {
@@ -41,12 +42,12 @@ namespace BoVoyageFinal.Models
         [Display(Name = "PrixHt")]
         public decimal PrixHt { get; set; }
         
-        [Required, Range(0, 100)]
+        [Required(ErrorMessage = "Champ obligatoire. Veuillez saisir une valeur entre 0 et 1."), Range(0, 1)]
         [Display(Name = "Réduction")]
         [DisplayFormat(DataFormatString = "{0:P0}")]
         public decimal Reduction { get; set; }
 
-        [Required(ErrorMessage = "Champ obligatoire. Veuillez renseigner une description comprise entre 20 et 1500 caractères."), StringLength(1500, MinimumLength=20)]
+        [Required(ErrorMessage = "Champ obligatoire. Veuillez renseigner une description comprise entre 20 et 1500 caractères."), StringLength(1500, MinimumLength=5)]
         [Display(Name = "Descriptif")]
         public string Descriptif { get; set; }
 
@@ -65,12 +66,10 @@ namespace BoVoyageFinal.Models
             // On fait les contrôles
             // NB/ On utilise pas la vue locale, car le DbSet est instancié à chaque appel du contrôleur et donc pas chargé quand on arrive sur la vue de création d'un aliment
 
-            var res = ctx.Voyage.FirstOrDefaultAsync(d => d.DateDepart < voyage.DateRetour);
-            if (res != null)
+            if (voyage.DateDepart >= voyage.DateRetour)
             {
-                yield return new ValidationResult("La date de départ doit être inférieure à la date de retour");
+                yield return new ValidationResult("La date de départ doit être inférieure à la date de retour", new string[] { "DateDepart", "DateRetour" });
             }
-
         }
     }
 }
