@@ -31,7 +31,7 @@
 
             }
         </ul>
-        <button data-toggle="modal" data-target="#ajouterVoyageurModal" class="btn-primary ml-5">Ajouter un participant</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#ajouterVoyageurModal" >Ajouter un participant</button>
         <hr />
         <p>Nombre de participants : <span>@ViewBag.Nbr</span></p>
         <hr />
@@ -43,9 +43,11 @@
 
         <p>Prix TTC : <span>@ViewBag.PrixTTC €</span></p>
     </div>
+
+
     <!-- Afficher prix total et bouton payer-->
 </div>
-
+<a class="btn btn-primary" asp-area="SiteWeb" asp-controller="Voyages" asp-action="Paiement">Paiement</a>
 
 <!-- Vue modale permettant d'ajouter un participant-->
 <div class="modal fade" id="ajouterVoyageurModal" tabindex="-1" role="dialog" aria-labelledby="ajouterVoyageurModalLabel" aria-hidden="true" data-backdrop="static">
@@ -58,7 +60,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="text-center border border-light p-5" action="BookIndex"  id="ajouterVoyageur" method="get">
+                <form class="text-center border border-light p-5" action="BookIndex" id="ajouterVoyageur" method="get">
 
                     <p class="h4 mb-4">Ajouter un participant</p>
 

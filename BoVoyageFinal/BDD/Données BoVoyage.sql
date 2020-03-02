@@ -122,7 +122,7 @@ insert Photo(NomFichier, IdDestination) values
 select Photo.Id from Photo
 
 -- Backup and Restore DataBase
-backup database BoVoyage to disk = N'C:\Users\Adminl\Desktop\BoVoyage\BoVoyageFinal\BoVoyageFinal\BDD\BoVoyage.bak' with format
+backup database BoVoyage to disk = N'C:\Users\Jeremy\Desktop\BoVoyage\BoVoyageFinal\BDD\BoVoyage.bak' with format
 
 restore database BoVoyage from disk = N'C:\Users\Adminl\Desktop\BoVoyage\BoVoyageFinal\BoVoyageFinal\BDD\BoVoyage.bak'
 with

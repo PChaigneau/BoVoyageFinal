@@ -9,15 +9,9 @@
 <form method="post">
     <div class="card">
         <div class="card-header">
-            <h2>Add or remove users from this role</h2>
+            <h2>Ajouter des personnes à ce rôle</h2>
         </div>
-        <div asp-area="BackOffice"  asp-controller="administrations" asp-action="EditUsersInRole" method="get">
-            <p>
-                <span>Description </span>
-                <input name="TextSaisi" value="@ViewBag.Recherche" />
-                <input type="submit" value="Chercher" />
 
-            </p>
         </div>
         <div class="card-body">
 

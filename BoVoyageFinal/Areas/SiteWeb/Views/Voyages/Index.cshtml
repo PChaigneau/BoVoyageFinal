@@ -35,9 +35,7 @@
     <div class="row justify-content-between">
         @foreach (var item in Model)
         {
-        <div class="card col-lg-5-md-3-xs-2 mr-3 ml-3 mt-4 p-2 text-center" style="width: 18rem;">
-            @if (@item.IdDestinationNavigation.Photo.Any())
-            {
+            <div class="card col-lg-5-md-3-xs-2 mr-3 ml-3 mt-4 p-2 text-center" style="width: 18rem;">
                 <img src="/pictures/@item.IdDestinationNavigation.Photo.First().NomFichier" class="card-img-top" alt="...">
             }
             else

@@ -75,35 +75,6 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
             return View(personne);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> AddManager(IdentityUser personne, IConfiguration Configuration)
-        //{
-
-        //    IConfigurationSection userSettings = Configuration.GetSection("UserSettings");
-        //    var manager = new IdentityUser
-        //    {
-        //        UserName = userSettings["UserName"],
-        //        Email = userSettings["UserEmail"],
-        //        EmailConfirmed = true
-        //    };
-        //    string pwd = userSettings["UserPassword"];
-
-        //    // Si l'utilisateur admin n'existe pas déjà dans la base, on l'ajoute
-        //    // puis on lui affecte le rôle administrateur
-        //    IdentityUser _user = await _userManager.FindByEmailAsync(userSettings["UserEmail"]);
-        //    if (_user == null)
-        //    {
-        //        IdentityResult createManager = await _userManager.CreateAsync(manager, pwd);
-        //        if (createManager.Succeeded)
-        //        {
-        //            await _userManager.AddToRoleAsync(manager, "Admin");
-        //        }
-        //    }
-        //    return View(manager);
-        //}
-
-
 
         // GET: BackOffice/Personnes/Edit/5
         public async Task<IActionResult> Edit(int? id)
