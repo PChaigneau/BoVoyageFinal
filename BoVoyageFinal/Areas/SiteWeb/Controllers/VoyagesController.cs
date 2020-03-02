@@ -77,7 +77,7 @@ namespace BoVoyageFinal.Areas.SiteWeb.Controllers
             //Récupération de l'email de l'utilisateur loggé
             var userMail = _userManager.GetUserName(HttpContext.User);
             //tester si le mail est présent dans une ligne de Personne et si oui  : récupérer l'id correspondant, créer un Voyageur
-            var user = await _context.Personne.SingleOrDefaultAsync(p=>p.Email==userMail).AsNoTracking();
+            var user = await _context.Personne.AsNoTracking().SingleOrDefaultAsync(p=>p.Email==userMail);
             int userId;
             int userClientId;
             int userVoyageurId;
