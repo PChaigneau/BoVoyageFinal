@@ -119,6 +119,11 @@ namespace BoVoyageFinal.Areas.SiteWeb.Controllers
             return View(resa);
         }
 
+        public IActionResult Paiement()
+        {
+
+            return View();
+        }
 
         [AllowAnonymous]
         // GET: SiteWeb/Voyages/Details/5
