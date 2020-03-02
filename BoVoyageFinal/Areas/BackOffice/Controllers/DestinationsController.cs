@@ -12,8 +12,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BoVoyageFinal.Areas.BackOffice.Controllers
 {
-    //[Authorize(Roles = "admin, manager")]
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin, manager")]
+    //[AllowAnonymous]
     [Area("BackOffice")]
     public class DestinationsController : Controller
     {

@@ -7,19 +7,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BoVoyageFinal.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace BoVoyageFinal.Areas.BackOffice.Controllers
 {
-    //[Authorize(Roles = "admin, manager")]
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin, manager")]
+    //[AllowAnonymous]
     [Area("BackOffice")]
     public class PersonnesController : Controller
     {
         private readonly BoVoyageContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public PersonnesController(BoVoyageContext context)
+        public PersonnesController(BoVoyageContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: BackOffice/Personnes
@@ -62,7 +65,23 @@ namespace BoVoyageFinal.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                var userMail = _userManager.GetUserName(HttpContext.User);
+                //await _userManager.AddToRoleAsync(user, "Member");
+                _context.Add(personne);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(personne);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddManager(IdentityUser personne)
+        {
+            if (ModelState.IsValid)
+            {
+                var Manager = _userManager.AddToRoleAsync(personne, "Admin");
+                //await _userManager.AddToRoleAsync(user, "Member");
                 _context.Add(personne);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
